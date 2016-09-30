@@ -121,6 +121,16 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/30/sql注入总结/">sql注入总结</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <p>#<strong>sql注入总结</strong><br><br><br></p>
@@ -374,12 +384,19 @@ and 1=2 union all select 一句话HEX值 into outfile &#39;路径&#39;</code></p
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/29/dvwa初级sql注入试炼/">dvwa初级sql注入试炼</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: dvwa初级sql注入试炼<br>date: 2016-09-29 21:57:46<br>tags:</p>
-<hr>
-<h1 id="今天来试炼sql注入"><a href="#今天来试炼sql注入" class="headerlink" title="今天来试炼sql注入"></a>今天来试炼sql注入</h1><ol>
+        <h1 id="今天来试炼sql注入"><a href="#今天来试炼sql注入" class="headerlink" title="今天来试炼sql注入"></a>今天来试炼sql注入</h1><ol>
 <li><p>首先对输入框进行注入测试输入 1 ，此时得到下图<br><img src="https://cl.ly/1H3q2b2q2i1R/1.jpg" alt="1"></p>
 <h6 id="我们会发现url中有id-1，页面中会出现firstname-和-surname-两个返回值，现在还要确认是字符型注入还是数字型注入，输入1’-，此时会报错，再输入1’-时，返回正确，可以确认是属于字符型注入，此时可以猜想出后台的sql查询语句可能是这样的：select-firstname-surname-from-未知表名-where-id-‘1’"><a href="#我们会发现url中有id-1，页面中会出现firstname-和-surname-两个返回值，现在还要确认是字符型注入还是数字型注入，输入1’-，此时会报错，再输入1’-时，返回正确，可以确认是属于字符型注入，此时可以猜想出后台的sql查询语句可能是这样的：select-firstname-surname-from-未知表名-where-id-‘1’" class="headerlink" title="我们会发现url中有id=1，页面中会出现firstname 和 surname 两个返回值，现在还要确认是字符型注入还是数字型注入，输入1’ ，此时会报错，再输入1’# 时，返回正确，可以确认是属于字符型注入，此时可以猜想出后台的sql查询语句可能是这样的：select firstname,surname from [未知表名] where id =‘1’ ;"></a>我们会发现url中有id=1，页面中会出现firstname 和 surname 两个返回值，现在还要确认是字符型注入还是数字型注入，输入1’ ，此时会报错，再输入1’# 时，返回正确，可以确认是属于字符型注入，此时可以猜想出后台的sql查询语句可能是这样的：<code>select firstname,surname from [未知表名] where id =‘1’</code> ;</h6></li>
 <li><p>猜测字段数，输入 <code>1’ order by 1 #</code> ， 返回正确<br><img src="https://cl.ly/0C2x1h0h3f43/2.jpg" alt="2"></p>
@@ -408,7 +425,7 @@ and 1=2 union all select 一句话HEX值 into outfile &#39;路径&#39;</code></p
     <div class="article-info article-info-index">
       
       <a href="/2016/09/29/dvwa初级sql注入试炼/" class="archive-article-date">
-  	<time datetime="2016-09-29T13:57:46.694Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-29</time>
+  	<time datetime="2016-09-29T13:57:46.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-29</time>
 </a>
       
       

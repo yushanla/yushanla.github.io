@@ -4,22 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Hexo</title>
+  <title>dvwa初级sql注入试炼 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: dvwa初级sql注入试炼date: 2016-09-29 21:57:46tags:
-
-今天来试炼sql注入
+  <meta name="description" content="今天来试炼sql注入
 首先对输入框进行注入测试输入 1 ，此时得到下图
-我们会发现url中有id=1，页面中会出现firstname 和 surname 两个返回值，现在还要确认是字符型注入还是数字型注入，输入1’ ，此时会报错，再输入1’# 时，返回正确，可以确认是属于字符型注入，此时可以猜">
+我们会发现url中有id=1，页面中会出现firstname 和 surname 两个返回值，现在还要确认是字符型注入还是数字型注入，输入1’ ，此时会报错，再输入1’# 时，返回正确，可以确认是属于字符型注入，此时可以猜想出后台的sql查询语句可能是这样的：select firstname,surname from [未知表">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="dvwa初级sql注入试炼">
 <meta property="og:url" content="http://iyushan.github.io/2016/09/29/dvwa初级sql注入试炼/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="title: dvwa初级sql注入试炼date: 2016-09-29 21:57:46tags:
-
-今天来试炼sql注入
+<meta property="og:description" content="今天来试炼sql注入
 首先对输入框进行注入测试输入 1 ，此时得到下图
-我们会发现url中有id=1，页面中会出现firstname 和 surname 两个返回值，现在还要确认是字符型注入还是数字型注入，输入1’ ，此时会报错，再输入1’# 时，返回正确，可以确认是属于字符型注入，此时可以猜">
+我们会发现url中有id=1，页面中会出现firstname 和 surname 两个返回值，现在还要确认是字符型注入还是数字型注入，输入1’ ，此时会报错，再输入1’# 时，返回正确，可以确认是属于字符型注入，此时可以猜想出后台的sql查询语句可能是这样的：select firstname,surname from [未知表">
 <meta property="og:image" content="https://cl.ly/1H3q2b2q2i1R/1.jpg">
 <meta property="og:image" content="https://cl.ly/0C2x1h0h3f43/2.jpg">
 <meta property="og:image" content="https://cl.ly/0N3y3g2s131e/3.jpg">
@@ -28,14 +24,12 @@
 <meta property="og:image" content="https://cl.ly/042a0J3j1i1L/6.jpg">
 <meta property="og:image" content="https://cl.ly/3A3v2t3y422r/7.jpg">
 <meta property="og:image" content="https://cl.ly/2I0N1y0C3B2d/8.jpg">
-<meta property="og:updated_time" content="2016-09-29T14:36:05.684Z">
+<meta property="og:updated_time" content="2016-09-30T15:44:57.566Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="title: dvwa初级sql注入试炼date: 2016-09-29 21:57:46tags:
-
-今天来试炼sql注入
+<meta name="twitter:title" content="dvwa初级sql注入试炼">
+<meta name="twitter:description" content="今天来试炼sql注入
 首先对输入框进行注入测试输入 1 ，此时得到下图
-我们会发现url中有id=1，页面中会出现firstname 和 surname 两个返回值，现在还要确认是字符型注入还是数字型注入，输入1’ ，此时会报错，再输入1’# 时，返回正确，可以确认是属于字符型注入，此时可以猜">
+我们会发现url中有id=1，页面中会出现firstname 和 surname 两个返回值，现在还要确认是字符型注入还是数字型注入，输入1’ ，此时会报错，再输入1’# 时，返回正确，可以确认是属于字符型注入，此时可以猜想出后台的sql查询语句可能是这样的：select firstname,surname from [未知表">
 <meta name="twitter:image" content="https://cl.ly/1H3q2b2q2i1R/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -144,12 +138,19 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      dvwa初级sql注入试炼
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: dvwa初级sql注入试炼<br>date: 2016-09-29 21:57:46<br>tags:</p>
-<hr>
-<h1 id="今天来试炼sql注入"><a href="#今天来试炼sql注入" class="headerlink" title="今天来试炼sql注入"></a>今天来试炼sql注入</h1><ol>
+        <h1 id="今天来试炼sql注入"><a href="#今天来试炼sql注入" class="headerlink" title="今天来试炼sql注入"></a>今天来试炼sql注入</h1><ol>
 <li><p>首先对输入框进行注入测试输入 1 ，此时得到下图<br><img src="https://cl.ly/1H3q2b2q2i1R/1.jpg" alt="1"></p>
 <h6 id="我们会发现url中有id-1，页面中会出现firstname-和-surname-两个返回值，现在还要确认是字符型注入还是数字型注入，输入1’-，此时会报错，再输入1’-时，返回正确，可以确认是属于字符型注入，此时可以猜想出后台的sql查询语句可能是这样的：select-firstname-surname-from-未知表名-where-id-‘1’"><a href="#我们会发现url中有id-1，页面中会出现firstname-和-surname-两个返回值，现在还要确认是字符型注入还是数字型注入，输入1’-，此时会报错，再输入1’-时，返回正确，可以确认是属于字符型注入，此时可以猜想出后台的sql查询语句可能是这样的：select-firstname-surname-from-未知表名-where-id-‘1’" class="headerlink" title="我们会发现url中有id=1，页面中会出现firstname 和 surname 两个返回值，现在还要确认是字符型注入还是数字型注入，输入1’ ，此时会报错，再输入1’# 时，返回正确，可以确认是属于字符型注入，此时可以猜想出后台的sql查询语句可能是这样的：select firstname,surname from [未知表名] where id =‘1’ ;"></a>我们会发现url中有id=1，页面中会出现firstname 和 surname 两个返回值，现在还要确认是字符型注入还是数字型注入，输入1’ ，此时会报错，再输入1’# 时，返回正确，可以确认是属于字符型注入，此时可以猜想出后台的sql查询语句可能是这样的：<code>select firstname,surname from [未知表名] where id =‘1’</code> ;</h6></li>
 <li><p>猜测字段数，输入 <code>1’ order by 1 #</code> ， 返回正确<br><img src="https://cl.ly/0C2x1h0h3f43/2.jpg" alt="2"></p>
@@ -178,7 +179,7 @@
     <div class="article-info article-info-index">
       
       <a href="/2016/09/29/dvwa初级sql注入试炼/" class="archive-article-date">
-  	<time datetime="2016-09-29T13:57:46.694Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-29</time>
+  	<time datetime="2016-09-29T13:57:46.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-29</time>
 </a>
       
       
@@ -195,7 +196,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          sql注入总结
         
       </div>
     </a>
