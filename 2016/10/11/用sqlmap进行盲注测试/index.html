@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>用sqlmap进行盲注测试 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天来试试sql的盲注测试，不是手工，而是用sqlmap这个神器。
+关于传统sql注入和sql盲注的区别，目前我只知道盲注是sql注入的一种，盲注是在渗透者不知情的情况下对网站数据库数据进行不断猜测的注入。
+
+sqlmap支持五种不同的注入模式：
+1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。
+2、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用sqlmap进行盲注测试">
+<meta property="og:url" content="http://iyushan.github.io/2016/10/11/用sqlmap进行盲注测试/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="今天来试试sql的盲注测试，不是手工，而是用sqlmap这个神器。
+关于传统sql注入和sql盲注的区别，目前我只知道盲注是sql注入的一种，盲注是在渗透者不知情的情况下对网站数据库数据进行不断猜测的注入。
+
+sqlmap支持五种不同的注入模式：
+1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。
+2、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（">
+<meta property="og:image" content="https://cl.ly/3d1Z3o1c0U1h/1.JPG">
+<meta property="og:image" content="https://cl.ly/0n2m0b2j110A/2.JPG">
+<meta property="og:image" content="https://cl.ly/3G2P2o1k0i1s/3.JPG">
+<meta property="og:image" content="https://cl.ly/0l0F1o002t12/4.JPG">
+<meta property="og:image" content="https://cl.ly/1v2H413c3Y3z/5.JPG">
+<meta property="og:image" content="https://cl.ly/2c053k3t0G3h/6.JPG">
+<meta property="og:updated_time" content="2016-10-11T15:02:57.369Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用sqlmap进行盲注测试">
+<meta name="twitter:description" content="今天来试试sql的盲注测试，不是手工，而是用sqlmap这个神器。
+关于传统sql注入和sql盲注的区别，目前我只知道盲注是sql注入的一种，盲注是在渗透者不知情的情况下对网站数据库数据进行不断猜测的注入。
+
+sqlmap支持五种不同的注入模式：
+1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。
+2、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（">
+<meta name="twitter:image" content="https://cl.ly/3d1Z3o1c0U1h/1.JPG">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  <script src="/style.js"></script>
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://cl.ly/472m3a0y1N0L/2.JPG" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">虞山</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">业精于勤荒于嬉 行成于思毁于随</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">虞山</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="https://cl.ly/472m3a0y1N0L/2.JPG" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">虞山</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">业精于勤荒于嬉 行成于思毁于随</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-用sqlmap进行盲注测试" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      用sqlmap进行盲注测试
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天来试试sql的盲注测试，不是手工，而是用sqlmap这个神器。</p>
+<p>关于传统sql注入和sql盲注的区别，目前我只知道盲注是sql注入的一种，盲注是在渗透者不知情的情况下对网站数据库数据进行不断猜测的注入。</p>
+<blockquote>
+<p>sqlmap支持五种不同的注入模式：</p>
+<p>1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。</p>
+<p>2、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（即页面返回时间是否增加）来判断。</p>
+<p>3、基于报错注入，即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中。&gt;</p>
+<p>4、联合查询注入，可以使用union的情况下的注入。</p>
+<p>5、堆查询注入，可以同时执行多条语句的执行时的注入。</p>
+</blockquote>
+<p>今天还是以DVWA来作为测试环境</p>
+<hr>
+<p>首先，将DVWA等级调为low，然后进入sql注入页面，通过一些小测试发现存在sql注入漏洞，接下来准备直接用sqlmap进行注入。</p>
+<pre><code>sqlmap.py -r headers.txt --cookie=&quot;security=low; PHPSESSID=p8hgdmvsrtuagjkuprfg8pjle7&quot; 
+</code></pre><p><strong>这里的headers.txt文件是抓取的访问sql注入页面的请求头文件</strong></p>
+<p>参数解释：</p>
+<p>-r：sqlmap可以从一个文本文件中获取HTTP请求，这样就可以跳过设置一些其他参数（比如cookie，POST数据，等等）。当请求是HTTPS的时候你需要配合这个–force-ssl参数来使用，或者你可以在Host头后面加上:443。</p>
+<p>–cookie : DVWA如果不加上cookie就会302跳转</p>
+<p>之后sqlmap界面会出现一系列测试的条目，其中有一些需要我们注意<br><img src="https://cl.ly/3d1Z3o1c0U1h/1.JPG" alt="1"><br>下面是sqlmap尝试的一些注入点<br><img src="https://cl.ly/0n2m0b2j110A/2.JPG" alt="2"></p>
+<p>sqlmap发现id参数存在error-based、time-based blind、UNION query三种注入漏洞，现在我们来试试第一个，通过–technique选线实现，如下列表中是该选项的参数。<br>&gt;<br>B : 基于Boolean的盲注（Boolean based blind）<br><br>Q : 内联查询（Inline queries）<br><br>T : 基于时间的盲注（time based blind）<br><br>U : 基于联合查询（Union query based）<br><br>E : 基于错误（error based）<br><br>S : 栈查询（stack queries）</p>
+<p>构造命令：</p>
+<pre><code>sqlmap.py -r headers.txt --cookie=&quot;security=low; PHPSESSID=p8hgdmvsrtuagjkuprfg8pjle7&quot; --technique B -p id --current-user
+</code></pre><p>参数解释：<br>–current-user ： 强制SQLmap查询并显示登录MYSQL数据库系统的当前用户。</p>
+<p>查询结果是<br><img src="https://cl.ly/3G2P2o1k0i1s/3.JPG" alt="3"></p>
+<p>知道了当前数据库用户，构造下一个命令：</p>
+<pre><code>sqlmap.py -r headers.txt --cookie=&quot;security=low; PHPSESSID=p8hgdmvsrtuagjkuprfg8pjle7&quot; --technique B -p id -U root@localhost --password
+</code></pre><p>参数解释：</p>
+<p>-p ： 设置想要测试的参数，如本次的” id “。</p>
+<p>–password ： 让SQLmap去获取指定用户名对应的密码。</p>
+<p>结果如下：</p>
+<p><img src="https://cl.ly/0l0F1o002t12/4.JPG" alt="4"></p>
+<p>因为在DVWA的mysql中，没有为root@localhost指定password，所以现在得到的password只是一个NULL</p>
+<hr>
+<p>##传统sql注入<br>    sqlmap.py -u “<a href="http://*.*.*.*/DV/vulnerabilities/sqli/?id=1&amp;Submit=Submit#" target="_blank" rel="external">http://*.*.*.*/DV/vulnerabilities/sqli/?id=1&amp;Submit=Submit#</a>“ –cookie=”security=low; PHPSESSID=p8hgdmvsrtuagjkuprfg8pjle7” -b –current-db –current-user<br>参数解释：<br>-b ： 获取DBMS banner</p>
+<p>–currnet-db ： 获取当前数据库</p>
+<p>结果如下：</p>
+<p><img src="https://cl.ly/1v2H413c3Y3z/5.JPG" alt="5"></p>
+<pre><code>sqlmap.py -u &quot;http://139.199.34.149/DV/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low; PHPSESSID=p8hgdmvsrtuagjkuprfg8pjle7&quot; --string=&quot;Surname&quot; --users --password
+</code></pre><p>参数解释：</p>
+<p>–string ：<br>默认情况下sqlmap通过判断返回页面的不同来判断真假，但有时候这会产生误差，因为有的页面在每次刷新的时候都会返回不同的代码，比如页面当中包含一个动态的广告或者其他内容，这会导致sqlmap的误判。此时用户可以提供一个字符串或者一段正则匹配，在原始页面与真条件下的页面都存在的字符串，而错误页面中不存在（使用–string参数添加字符串，–regexp添加正则），同时用户可以提供一段字符串在原始页面与真条件下的页面都不存在的字符串，而错误页面中存在的字符串（–not-string添加）。用户也可以提供真与假条件返回的HTTP状态码不一样来注入，例如，响应200的时候为真，响应401的时候为假，可以添加参数–code=200。</p>
+<p>PS:  参数：–text-only,–titles<br><br>有些时候用户知道真条件下的返回页面与假条件下返回页面是不同位置在哪里可以使用–text-only（HTTP响应体中不同）–titles（HTML的title标签中不同）。</p>
+<p>–users ： 当前用户有权限读取包含所有用户的表的权限时，就可以列出所有管理用户。</p>
+<p>结果如下：</p>
+<p><img src="https://cl.ly/2c053k3t0G3h/6.JPG" alt="6"></p>
+<hr>
+<p>Done!</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/10/11/用sqlmap进行盲注测试/" class="archive-article-date">
+  	<time datetime="2016-10-11T12:35:33.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-11</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql注入/">sql注入</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/10/movie/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">超体_电影观后感</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 John Doe
+    	</div>
+      	<!--
+	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+	</div> -->
+    </div>
+  </div>
+</footer>
+
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">Mr.Liu&lt;br&gt;&lt;br&gt;记录点滴，热爱生命&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;“ 自律给我自由 ”</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
