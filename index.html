@@ -117,6 +117,83 @@
       <div class="body-wrap">
         
   
+    <article id="post-windows-server下shadowsocks配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/12/windows-server下shadowsocks配置/">windows_server下shadowsocks配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前已经配过一遍这个了，当时也已经配完可用，这几天服务器关机了，服务器重启后，竟然忘了怎么开启ss的服务端。。。这也体现了记录的重要性，又折腾了得俩小时，泪的教训啊，这次虽然是第二次配，但也经历了很多弯路，现在来记录一下刚才的辛酸俩小时。。</p>
+<p>ss一般配置在linux下，windows下的很少，网上教程也不多，但我的服务器是windows的，一直也没换，当时就想着在windows下试一试，所有才有了这篇文章。</p>
+<p><strong>首先，环境配置</strong></p>
+<p><a href="https://www.python.org/downloads/" target="_blank" rel="external">Python</a>(我用的版本是2.7.12)+pip+<a href="https://slproweb.com/products/Win32OpenSSL.html" target="_blank" rel="external">openSSL</a></p>
+<blockquote>
+<p>注意：安装python和openssl的32位或者64位要统一</p>
+</blockquote>
+<p>1.下载python和opensll（pip已经在安装python的过程中默认安装上了，在<code>C:\Python27\Scripts\</code>路径下）</p>
+<p>2.环境变量配置，将<code>C:\Python27\;C:\Python27\Scripts\</code>放入path中</p>
+<p>3.在cmd命令行中输入指令 <code>pip install shadowsocks</code>，显示“successfully installed shadowsocks”就是安装成功了</p>
+<p><strong>然后，保存配置文件</strong></p>
+<p>需要新建一个文本文档，改名为<code>config.json</code>，内容为：</p>
+<blockquote>
+<p>{<br>“server”:”0.0.0.0”,<br>“server_port”:8388,<br>“local_address”:”127.0.0.1”,<br>“local_port”:1080,<br>“password”:”qwe123” //客户端连接服务器端需要的密码<br>“timeout”:300,<br>“method”:”aes-256-cfb”,<br>“fast_open”:false<br>}</p>
+</blockquote>
+<p>保存到<code>C:\Python27\Scripts\</code>路径下</p>
+<p><strong>最后，开启服务</strong></p>
+<p>在cmd中输入指令 <code>ssserver.exe -c C:\Python27\Scripts\config.json</code></p>
+<p><img src="https://cl.ly/2n12212C3E0U/2.JPG" alt="1"></p>
+<p>现在服务器端已经配置结束</p>
+<p><strong>接下来看一看客户端的配置</strong></p>
+<p>首先<a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="external">下载</a>ss客户端</p>
+<p>然后按照刚才服务器端的配置，配置客户端<br><img src="https://cl.ly/3H0B0o1r3t2Z/3.JPG" alt="2"></p>
+<p>打开 启用系统代理和全局代理</p>
+<p><img src="https://cl.ly/2K0n2K1p2E1u/4.png" alt="3"></p>
+<p>现在打开浏览器，进入baidu，输入 “ip” 进行搜索，成功的话会出现下面的现象：(我用的腾讯的服务器)</p>
+<p><img src="https://cl.ly/3A1y1y2k2g0I/6.JPG" alt="4"></p>
+<p>Done!</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/11/12/windows-server下shadowsocks配置/" class="archive-article-date">
+  	<time datetime="2016-11-12T08:54:51.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-12</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shadowsocks-windows/">shadowsocks windows</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-windows下使用linux-非虚拟机" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     

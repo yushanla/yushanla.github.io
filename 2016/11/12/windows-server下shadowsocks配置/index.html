@@ -6,22 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iyushan.github.io">
-  <title>windows10下使用linux(非虚拟机) | Hexo</title>
+  <title>windows_server下shadowsocks配置 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在今年的 Build 2016 上，微软向全世界介绍了他们还处于 Beta 阶段的 Windows 下的 Linux 子系统（WSL），它可以让开发者们在 Windows 10 下通过 Bash shell 运行原生的 Ubuntu 用户态二进制程序。如果你参与了 Windows Insider 计划，你就可以在最新的 Windows 10 年度升级版的 Insider 构建版中体验这个功能了。">
+  <meta name="description" content="之前已经配过一遍这个了，当时也已经配完可用，这几天服务器关机了，服务器重启后，竟然忘了怎么开启ss的服务端。。。这也体现了记录的重要性，又折腾了得俩小时，泪的教训啊，这次虽然是第二次配，但也经历了很多弯路，现在来记录一下刚才的辛酸俩小时。。
+ss一般配置在linux下，windows下的很少，网上教程也不多，但我的服务器是windows的，一直也没换，当时就想着在windows下试一试，所有才有了">
 <meta property="og:type" content="article">
-<meta property="og:title" content="windows10下使用linux(非虚拟机)">
-<meta property="og:url" content="http://iyushan.github.io/2016/11/12/windows下使用linux-非虚拟机/index.html">
+<meta property="og:title" content="windows_server下shadowsocks配置">
+<meta property="og:url" content="http://iyushan.github.io/2016/11/12/windows-server下shadowsocks配置/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在今年的 Build 2016 上，微软向全世界介绍了他们还处于 Beta 阶段的 Windows 下的 Linux 子系统（WSL），它可以让开发者们在 Windows 10 下通过 Bash shell 运行原生的 Ubuntu 用户态二进制程序。如果你参与了 Windows Insider 计划，你就可以在最新的 Windows 10 年度升级版的 Insider 构建版中体验这个功能了。">
-<meta property="og:image" content="https://cl.ly/2m1S0y3u0q1J/1.JPG">
-<meta property="og:image" content="https://cl.ly/3A2g39023N03/3.JPG">
-<meta property="og:image" content="https://cl.ly/0e1H1S3z2n2E/4.JPG">
-<meta property="og:updated_time" content="2016-11-12T06:06:48.132Z">
+<meta property="og:description" content="之前已经配过一遍这个了，当时也已经配完可用，这几天服务器关机了，服务器重启后，竟然忘了怎么开启ss的服务端。。。这也体现了记录的重要性，又折腾了得俩小时，泪的教训啊，这次虽然是第二次配，但也经历了很多弯路，现在来记录一下刚才的辛酸俩小时。。
+ss一般配置在linux下，windows下的很少，网上教程也不多，但我的服务器是windows的，一直也没换，当时就想着在windows下试一试，所有才有了">
+<meta property="og:image" content="https://cl.ly/2n12212C3E0U/2.JPG">
+<meta property="og:image" content="https://cl.ly/3H0B0o1r3t2Z/3.JPG">
+<meta property="og:image" content="https://cl.ly/2K0n2K1p2E1u/4.png">
+<meta property="og:image" content="https://cl.ly/3A1y1y2k2g0I/6.JPG">
+<meta property="og:updated_time" content="2016-11-12T09:52:34.500Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="windows10下使用linux(非虚拟机)">
-<meta name="twitter:description" content="在今年的 Build 2016 上，微软向全世界介绍了他们还处于 Beta 阶段的 Windows 下的 Linux 子系统（WSL），它可以让开发者们在 Windows 10 下通过 Bash shell 运行原生的 Ubuntu 用户态二进制程序。如果你参与了 Windows Insider 计划，你就可以在最新的 Windows 10 年度升级版的 Insider 构建版中体验这个功能了。">
-<meta name="twitter:image" content="https://cl.ly/2m1S0y3u0q1J/1.JPG">
+<meta name="twitter:title" content="windows_server下shadowsocks配置">
+<meta name="twitter:description" content="之前已经配过一遍这个了，当时也已经配完可用，这几天服务器关机了，服务器重启后，竟然忘了怎么开启ss的服务端。。。这也体现了记录的重要性，又折腾了得俩小时，泪的教训啊，这次虽然是第二次配，但也经历了很多弯路，现在来记录一下刚才的辛酸俩小时。。
+ss一般配置在linux下，windows下的很少，网上教程也不多，但我的服务器是windows的，一直也没换，当时就想着在windows下试一试，所有才有了">
+<meta name="twitter:image" content="https://cl.ly/2n12212C3E0U/2.JPG">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -123,7 +127,7 @@
 </nav>
 
       <div class="body-wrap">
-        <article id="post-windows下使用linux-非虚拟机" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-windows-server下shadowsocks配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -133,7 +137,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      windows10下使用linux(非虚拟机)
+      windows_server下shadowsocks配置
     </h1>
   
 
@@ -141,35 +145,46 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在今年的 Build 2016 上，微软向全世界介绍了他们还处于 Beta 阶段的 Windows 下的 Linux 子系统（WSL），它可以让开发者们在 Windows 10 下通过 Bash shell 运行原生的 Ubuntu 用户态二进制程序。如果你参与了 Windows Insider 计划，你就可以在最新的 Windows 10 年度升级版的 Insider 构建版中体验这个功能了。</p>
-<p>之前看到别人直接在windows下玩linux，很是炫酷，今天才终于在自己笔记本上试了试，过程很顺利，效果很满意，现在将过程记录下来，以备将来忘记时查看，同时也给那些想折腾的同学提供一些经验。</p>
-<p>前提是必须是win10系统，最好将版本升级到最新版，至于需不需要用户加入 Insider，因为我之前就已经加入了，所以不知道需不需要这个，有待验证。</p>
-<p>首先，在win10设置-&gt;更新与安全-&gt;针对开发人员-&gt;选择开发人员模式<br><img src="https://cl.ly/2m1S0y3u0q1J/1.JPG" alt="1"></p>
-<p>然后，在控制面板中，进入启用或关闭windows功能，选上 适用于linux的windows的子系统，之后需要重启一下<br><img src="https://cl.ly/3A2g39023N03/3.JPG" alt="2"></p>
-<p>最后，在cmd命令行中键入 bash ，之后就等待安装就可以了，等安装完成就进入了linux shell下！<br><img src="https://cl.ly/0e1H1S3z2n2E/4.JPG" alt="3"></p>
-<p>以后进入linux，直接输入bash即可，想退出就键入exit。</p>
-<p><strong>安装完成后需要注意的几点：</strong></p>
-<p>1.关于如何进入root用户下</p>
+        <p>之前已经配过一遍这个了，当时也已经配完可用，这几天服务器关机了，服务器重启后，竟然忘了怎么开启ss的服务端。。。这也体现了记录的重要性，又折腾了得俩小时，泪的教训啊，这次虽然是第二次配，但也经历了很多弯路，现在来记录一下刚才的辛酸俩小时。。</p>
+<p>ss一般配置在linux下，windows下的很少，网上教程也不多，但我的服务器是windows的，一直也没换，当时就想着在windows下试一试，所有才有了这篇文章。</p>
+<p><strong>首先，环境配置</strong></p>
+<p><a href="https://www.python.org/downloads/" target="_blank" rel="external">Python</a>(我用的版本是2.7.12)+pip+<a href="https://slproweb.com/products/Win32OpenSSL.html" target="_blank" rel="external">openSSL</a></p>
 <blockquote>
-<p>在linux下输入sudo passwd root，然后输入两遍密码即可</p>
+<p>注意：安装python和openssl的32位或者64位要统一</p>
 </blockquote>
-<p>2.关于linux系统所在路径</p>
+<p>1.下载python和opensll（pip已经在安装python的过程中默认安装上了，在<code>C:\Python27\Scripts\</code>路径下）</p>
+<p>2.环境变量配置，将<code>C:\Python27\;C:\Python27\Scripts\</code>放入path中</p>
+<p>3.在cmd命令行中输入指令 <code>pip install shadowsocks</code>，显示“successfully installed shadowsocks”就是安装成功了</p>
+<p><strong>然后，保存配置文件</strong></p>
+<p>需要新建一个文本文档，改名为<code>config.json</code>，内容为：</p>
 <blockquote>
-<p>C:\Users[你的用户名]\AppData\Local\lxss<br><br>有隐藏目录，如果想一级一级往下找linux路径，别忘了关闭 隐藏目录 功能</p>
+<p>{<br>“server”:”0.0.0.0”,<br>“server_port”:8388,<br>“local_address”:”127.0.0.1”,<br>“local_port”:1080,<br>“password”:”qwe123” //客户端连接服务器端需要的密码<br>“timeout”:300,<br>“method”:”aes-256-cfb”,<br>“fast_open”:false<br>}</p>
 </blockquote>
+<p>保存到<code>C:\Python27\Scripts\</code>路径下</p>
+<p><strong>最后，开启服务</strong></p>
+<p>在cmd中输入指令 <code>ssserver.exe -c C:\Python27\Scripts\config.json</code></p>
+<p><img src="https://cl.ly/2n12212C3E0U/2.JPG" alt="1"></p>
+<p>现在服务器端已经配置结束</p>
+<p><strong>接下来看一看客户端的配置</strong></p>
+<p>首先<a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="external">下载</a>ss客户端</p>
+<p>然后按照刚才服务器端的配置，配置客户端<br><img src="https://cl.ly/3H0B0o1r3t2Z/3.JPG" alt="2"></p>
+<p>打开 启用系统代理和全局代理</p>
+<p><img src="https://cl.ly/2K0n2K1p2E1u/4.png" alt="3"></p>
+<p>现在打开浏览器，进入baidu，输入 “ip” 进行搜索，成功的话会出现下面的现象：(我用的腾讯的服务器)</p>
+<p><img src="https://cl.ly/3A1y1y2k2g0I/6.JPG" alt="4"></p>
 <p>Done!</p>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2016/11/12/windows下使用linux-非虚拟机/" class="archive-article-date">
-  	<time datetime="2016-11-12T05:28:44.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-12</time>
+      <a href="/2016/11/12/windows-server下shadowsocks配置/" class="archive-article-date">
+  	<time datetime="2016-11-12T08:54:51.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-12</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微软黑科技/">微软黑科技</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shadowsocks-windows/">shadowsocks windows</a></li></ul>
 	</div>
 
       
@@ -182,18 +197,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/11/12/windows-server下shadowsocks配置/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          windows_server下shadowsocks配置
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/11/09/小玩意儿/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">小玩意儿</div>
+    <a href="/2016/11/12/windows下使用linux-非虚拟机/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">windows10下使用linux(非虚拟机)</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -227,7 +233,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="windows下使用linux-非虚拟机" data-title="windows10下使用linux(非虚拟机)" data-url="http://iyushan.github.io/2016/11/12/windows下使用linux-非虚拟机/"></div>
+	<div class="ds-thread" data-thread-key="windows-server下shadowsocks配置" data-title="windows_server下shadowsocks配置" data-url="http://iyushan.github.io/2016/11/12/windows-server下shadowsocks配置/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
