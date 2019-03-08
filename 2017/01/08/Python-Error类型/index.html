@@ -6,24 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://iyushan.github.io">
-  <title>windows10下使用linux(非虚拟机) | Hexo</title>
+  <title>&#39;Python_Error类型&#39; | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在今年的 Build 2016 上，微软向全世界介绍了他们还处于 Beta 阶段的 Windows 下的 Linux 子系统（WSL），它可以让开发者们在 Windows 10 下通过 Bash shell 运行原生的 Ubuntu 用户态二进制程序。如果你参与了 Windows Insider 计划，你就可以在最新的 Windows 10 年度升级版的 Insider 构建版中体验这个功能了。">
-<meta name="keywords" content="微软黑科技">
+  <meta name="description" content="#Python错误集锦（持续更新）  2017/1/8 Error_1: UnicodeDecodeError: &amp;apos;ascii&amp;apos; codec can&amp;apos;t decode byte 0xe5 in position 1: ordinal not in range(128) 出现这个问题的原因主要是python环境中的编码问题，ascii和unicode混淆，可以通过以下代">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="windows10下使用linux(非虚拟机)">
-<meta property="og:url" content="http://iyushan.github.io/2016/11/12/windows下使用linux-非虚拟机/index.html">
+<meta property="og:title" content="&#39;Python_Error类型&#39;">
+<meta property="og:url" content="http://iyushan.github.io/2017/01/08/Python-Error类型/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在今年的 Build 2016 上，微软向全世界介绍了他们还处于 Beta 阶段的 Windows 下的 Linux 子系统（WSL），它可以让开发者们在 Windows 10 下通过 Bash shell 运行原生的 Ubuntu 用户态二进制程序。如果你参与了 Windows Insider 计划，你就可以在最新的 Windows 10 年度升级版的 Insider 构建版中体验这个功能了。">
+<meta property="og:description" content="#Python错误集锦（持续更新）  2017/1/8 Error_1: UnicodeDecodeError: &amp;apos;ascii&amp;apos; codec can&amp;apos;t decode byte 0xe5 in position 1: ordinal not in range(128) 出现这个问题的原因主要是python环境中的编码问题，ascii和unicode混淆，可以通过以下代">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://cl.ly/2m1S0y3u0q1J/1.JPG">
-<meta property="og:image" content="https://cl.ly/3A2g39023N03/3.JPG">
-<meta property="og:image" content="https://cl.ly/0e1H1S3z2n2E/4.JPG">
-<meta property="og:updated_time" content="2016-11-12T06:06:48.132Z">
+<meta property="og:updated_time" content="2017-02-21T02:16:41.524Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="windows10下使用linux(非虚拟机)">
-<meta name="twitter:description" content="在今年的 Build 2016 上，微软向全世界介绍了他们还处于 Beta 阶段的 Windows 下的 Linux 子系统（WSL），它可以让开发者们在 Windows 10 下通过 Bash shell 运行原生的 Ubuntu 用户态二进制程序。如果你参与了 Windows Insider 计划，你就可以在最新的 Windows 10 年度升级版的 Insider 构建版中体验这个功能了。">
-<meta name="twitter:image" content="https://cl.ly/2m1S0y3u0q1J/1.JPG">
+<meta name="twitter:title" content="&#39;Python_Error类型&#39;">
+<meta name="twitter:description" content="#Python错误集锦（持续更新）  2017/1/8 Error_1: UnicodeDecodeError: &amp;apos;ascii&amp;apos; codec can&amp;apos;t decode byte 0xe5 in position 1: ordinal not in range(128) 出现这个问题的原因主要是python环境中的编码问题，ascii和unicode混淆，可以通过以下代">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -125,7 +121,7 @@
 </nav>
 
       <div class="body-wrap">
-        <article id="post-windows下使用linux-非虚拟机" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Python-Error类型" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy">
@@ -135,7 +131,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      windows10下使用linux(非虚拟机)
+      &#39;Python_Error类型&#39;
     </h1>
   
 
@@ -143,35 +139,52 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在今年的 Build 2016 上，微软向全世界介绍了他们还处于 Beta 阶段的 Windows 下的 Linux 子系统（WSL），它可以让开发者们在 Windows 10 下通过 Bash shell 运行原生的 Ubuntu 用户态二进制程序。如果你参与了 Windows Insider 计划，你就可以在最新的 Windows 10 年度升级版的 Insider 构建版中体验这个功能了。</p>
-<p>之前看到别人直接在windows下玩linux，很是炫酷，今天才终于在自己笔记本上试了试，过程很顺利，效果很满意，现在将过程记录下来，以备将来忘记时查看，同时也给那些想折腾的同学提供一些经验。</p>
-<p>前提是必须是win10系统，最好将版本升级到最新版，至于需不需要用户加入 Insider，因为我之前就已经加入了，所以不知道需不需要这个，有待验证。</p>
-<p>首先，在win10设置-&gt;更新与安全-&gt;针对开发人员-&gt;选择开发人员模式<br><img src="https://cl.ly/2m1S0y3u0q1J/1.JPG" alt="1"></p>
-<p>然后，在控制面板中，进入启用或关闭windows功能，选上 适用于linux的windows的子系统，之后需要重启一下<br><img src="https://cl.ly/3A2g39023N03/3.JPG" alt="2"></p>
-<p>最后，在cmd命令行中键入 bash ，之后就等待安装就可以了，等安装完成就进入了linux shell下！<br><img src="https://cl.ly/0e1H1S3z2n2E/4.JPG" alt="3"></p>
-<p>以后进入linux，直接输入bash即可，想退出就键入exit。</p>
-<p><strong>安装完成后需要注意的几点：</strong></p>
-<p>1.关于如何进入root用户下</p>
-<blockquote>
-<p>在linux下输入sudo passwd root，然后输入两遍密码即可</p>
-</blockquote>
-<p>2.关于linux系统所在路径</p>
-<blockquote>
-<p>C:\Users[你的用户名]\AppData\Local\lxss<br><br>有隐藏目录，如果想一级一级往下找linux路径，别忘了关闭 隐藏目录 功能</p>
-</blockquote>
-<p>Done!</p>
+        <p>#Python错误集锦（持续更新）</p>
+<hr>
+<p>2017/1/8</p>
+<p><strong>Error_1:</strong></p>
+<pre><code>UnicodeDecodeError: &apos;ascii&apos; codec can&apos;t decode byte 0xe5 in position 1: ordinal not in range(128)
+</code></pre><p>出现这个问题的原因主要是python环境中的编码问题，ascii和unicode混淆，可以通过以下代码解决问题</p>
+<p>decode或者encode的时候，如果不指定编码方式，会按照缺省编码方式来处理。查看、设置缺省编码方式可以这样做：</p>
+<pre><code>import sys
+reload(sys)
+sys.setdefaultcoding(&apos;utf8&apos;)#将默认环境编码方式设置为utf8
+</code></pre><p>encode()是将string转化为unicode<br><br>decode()是将unicode转化为string<br><br>unicode()函数其实是调用string的decode方法</p>
+<p>unicode可以作为中间码，当print一个unicode时，多数可以正常输出对应字符</p>
+<p><strong>Error_2:</strong></p>
+<pre><code>IndentationError: unindent does not match any outer indentation level
+</code></pre><p>当同一段代码的缩进中，出现既有4个空格还有<code>&lt;tab&gt;</code>键，就会报上面的错</p>
+<p><strong>Error_3</strong></p>
+<pre><code>expected a string or other character buffer object
+</code></pre><p>出现上面的错误时，比如：</p>
+<pre><code>floor = &apos;strstrstr&apos;,str(123),&apos;strstrstr&apos;
+with open(&apos;Error.txt&apos;) as f:
+    f.write(floor)
+</code></pre><p>上面的floor变量应该改为<code>floor = &#39;strstrstr&#39;+str(123)+&#39;strstrstr</code> ‘</p>
+<p><strong>Error_4</strong></p>
+<pre><code>TypeError: cannot concatenate &apos;str&apos; and &apos;int&apos; objects
+</code></pre><p>在将str和int两种类型的数据进行结合时出现的错误，解决方法：</p>
+<ol>
+<li>print ‘Is your secret number “ + str(p) + “?”</li>
+<li>print ‘Is your secret number %d?”%p<br>   (for multiple integers, you can  ‘%d %d %d’%(num1, num2, num3)</li>
+<li>print ‘Is your secret number {0}?”.format(p)</li>
+</ol>
+<p><strong>Error_5</strong></p>
+<pre><code>&lt;urlopen error [Errno 10060] &gt;
+</code></pre><p>当使用urllib2的urlopen()函数，打开链接时，可能出现这种错误，有可能是因为 主机所在网络不稳定，换个网络环境，或者等一段时间再行测试。</p>
+<p><strong>Error_6</strong></p>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2016/11/12/windows下使用linux-非虚拟机/" class="archive-article-date">
-  	<time datetime="2016-11-12T05:28:44.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-12</time>
+      <a href="/2017/01/08/Python-Error类型/" class="archive-article-date">
+  	<time datetime="2017-01-08T12:03:53.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-01-08</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微软黑科技/">微软黑科技</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
 	</div>
 
       
@@ -184,18 +197,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/11/12/windows-server下shadowsocks配置/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/02/16/wireshark打开后不显示Interface/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          windows_server下shadowsocks配置
+          wireshark启动后不显示Interface
         
       </div>
     </a>
   
   
-    <a href="/2016/11/09/小玩意儿/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">小玩意儿</div>
+    <a href="/2016/11/12/windows-server下shadowsocks配置/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">windows_server下shadowsocks配置</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -229,7 +242,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="windows下使用linux-非虚拟机" data-title="windows10下使用linux(非虚拟机)" data-url="http://iyushan.github.io/2016/11/12/windows下使用linux-非虚拟机/"></div>
+	<div class="ds-thread" data-thread-key="Python-Error类型" data-title="&#39;Python_Error类型&#39;" data-url="http://iyushan.github.io/2017/01/08/Python-Error类型/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

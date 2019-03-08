@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://iyushan.github.io">
-  <title>Tag: winrar,vbs,bat | Hexo</title>
+  <title>解决Wireshark不能识别网卡的问题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://iyushan.github.io/tags/winrar-vbs-bat/index.html">
+  <meta name="description" content="NPF即网络数据包过滤器（Netgroup Packet Filter，NPF）是Winpcap的核心部分，它是Winpcap完成困难工作的组件。它处理网络上传输的数据包，并且对用户级提供可捕获（capture）、发送（injection）和分析性能（analysis capabilities）。　　它不仅提供了基本的特性（例如抓包），还有更高级的特性（例如可编程的过滤器系统）。前者可以被用来约">
+<meta name="keywords" content="Wireshark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决Wireshark不能识别网卡的问题">
+<meta property="og:url" content="http://iyushan.github.io/2017/02/27/解决Wireshark不能识别网卡的问题/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="NPF即网络数据包过滤器（Netgroup Packet Filter，NPF）是Winpcap的核心部分，它是Winpcap完成困难工作的组件。它处理网络上传输的数据包，并且对用户级提供可捕获（capture）、发送（injection）和分析性能（analysis capabilities）。　　它不仅提供了基本的特性（例如抓包），还有更高级的特性（例如可编程的过滤器系统）。前者可以被用来约">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-02-27T10:54:27.118Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="解决Wireshark不能识别网卡的问题">
+<meta name="twitter:description" content="NPF即网络数据包过滤器（Netgroup Packet Filter，NPF）是Winpcap的核心部分，它是Winpcap完成困难工作的组件。它处理网络上传输的数据包，并且对用户级提供可捕获（capture）、发送（injection）和分析性能（analysis capabilities）。　　它不仅提供了基本的特性（例如抓包），还有更高级的特性（例如可编程的过滤器系统）。前者可以被用来约">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -116,54 +121,116 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-解决Wireshark不能识别网卡的问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/09/小玩意儿/" class="archive-article-date">
-  	<time datetime="2016-11-09T14:24:29.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/09/小玩意儿/">小玩意儿</a>
+    <h1 class="article-title" itemprop="name">
+      解决Wireshark不能识别网卡的问题
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>NPF即网络数据包过滤器（Netgroup Packet Filter，NPF）是Winpcap的核心部分，它是Winpcap完成困难工作的组件。它处理网络上传输的数据包，并且对用户级提供可捕获（capture）、发送（injection）和分析性能（analysis capabilities）。　　它不仅提供了基本的特性（例如抓包），还有更高级的特性（例如可编程的过滤器系统）。前者可以被用来约束一个抓包会话只针对网络通信中的一个子集，后者提供了一个强大而简单的统计网络通信量的机制。</p>
+</blockquote>
+<p>当Wireshark不能识别网卡时，可以使用 <code>net start npf</code> 指令，开启 npf 服务。</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2017/02/27/解决Wireshark不能识别网卡的问题/" class="archive-article-date">
+  	<time datetime="2017-02-27T10:48:59.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-02-27</time>
+</a>
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/winrar-vbs-bat/">winrar,vbs,bat</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Wireshark/">Wireshark</a></li></ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+  
+<nav id="article-nav">
+  
+    <a href="/2017/03/21/sublime安装SFTP插件/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          sublime安装SFTP插件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/16/分组不捕获_正则反向引用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">?:分组不捕获</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="解决Wireshark不能识别网卡的问题" data-title="解决Wireshark不能识别网卡的问题" data-url="http://iyushan.github.io/2017/02/27/解决Wireshark不能识别网卡的问题/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"litten-hexo"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
       </div>
@@ -186,9 +253,9 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
