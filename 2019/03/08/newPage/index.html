@@ -6,27 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://iyushan.github.io">
-  <title>sublime安装SFTP插件 | Hexo</title>
+  <title>newPage | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##sublime text 3 安装SFTP插件  Sumblime Text 3，按下Ctrl+Shift+P，调出命令面板，输入install Package，回车。    等待出现安装面板，输入sftp，回车。    在本地新建一个文件夹，文件名为event   打开sublime，在文件下打开文件夹，选择刚才创建的event文件夹   右键点击sublime左侧出现的event，按下图选">
-<meta name="keywords" content="sublime">
-<meta property="og:type" content="article">
-<meta property="og:title" content="sublime安装SFTP插件">
-<meta property="og:url" content="http://iyushan.github.io/2017/03/21/sublime安装SFTP插件/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="newPage">
+<meta property="og:url" content="http://iyushan.github.io/2019/03/08/newPage/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="##sublime text 3 安装SFTP插件  Sumblime Text 3，按下Ctrl+Shift+P，调出命令面板，输入install Package，回车。    等待出现安装面板，输入sftp，回车。    在本地新建一个文件夹，文件名为event   打开sublime，在文件下打开文件夹，选择刚才创建的event文件夹   右键点击sublime左侧出现的event，按下图选">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://cl.ly/292D2U1f1F2P/install%20package.png">
-<meta property="og:image" content="https://cl.ly/1W1C181P1b1S/sftp.JPG">
-<meta property="og:image" content="https://cl.ly/3r0E451b2o3p/open_file_jia.png">
-<meta property="og:image" content="https://cl.ly/1j1c0e132u10/map%20to%20remove.JPG">
-<meta property="og:image" content="https://cl.ly/2e3W1E451Y3K/123.png">
-<meta property="og:image" content="https://cl.ly/0i3f2i1b2b2B/uploader.png">
-<meta property="og:updated_time" content="2017-03-22T11:35:29.373Z">
+<meta property="og:updated_time" content="2019-03-08T07:13:51.986Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sublime安装SFTP插件">
-<meta name="twitter:description" content="##sublime text 3 安装SFTP插件  Sumblime Text 3，按下Ctrl+Shift+P，调出命令面板，输入install Package，回车。    等待出现安装面板，输入sftp，回车。    在本地新建一个文件夹，文件名为event   打开sublime，在文件下打开文件夹，选择刚才创建的event文件夹   右键点击sublime左侧出现的event，按下图选">
-<meta name="twitter:image" content="https://cl.ly/292D2U1f1F2P/install%20package.png">
+<meta name="twitter:title" content="newPage">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -128,7 +117,7 @@
 </nav>
 
       <div class="body-wrap">
-        <article id="post-sublime安装SFTP插件" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-newPage" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy">
@@ -138,7 +127,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      sublime安装SFTP插件
+      newPage
     </h1>
   
 
@@ -146,90 +135,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##<strong>sublime text 3 安装SFTP插件</strong></p>
-<p> Sumblime Text 3，按下Ctrl+Shift+P，调出命令面板，输入install Package，回车。</p>
-<p><img src="https://cl.ly/292D2U1f1F2P/install%20package.png" alt="    "></p>
-<hr>
-<p> 等待出现安装面板，输入sftp，回车。</p>
-<p><img src="https://cl.ly/1W1C181P1b1S/sftp.JPG" alt="    "></p>
-<hr>
-<p> 在本地新建一个文件夹，文件名为<code>event</code></p>
-<hr>
-<p> 打开sublime，在文件下打开文件夹，选择刚才创建的<code>event</code>文件夹</p>
-<p><img src="https://cl.ly/3r0E451b2o3p/open_file_jia.png" alt="  "></p>
-<hr>
-<p>右键点击sublime左侧出现的<code>event</code>，按下图选</p>
-<p><img src="https://cl.ly/1j1c0e132u10/map%20to%20remove.JPG" alt></p>
-<hr>
-<p> 此时会出现一个json文件，可以直接复制下面的内容到里面<br>(使用linux新建的一个名rules的普通用户)</p>
-<p>-</p>
-<pre><code>{
-// The tab key will cycle through the settings when first created
-// Visit http://wbond.net/sublime_packages/sftp/settings for help
-
-// sftp, ftp or ftps
-&quot;type&quot;: &quot;sftp&quot;,
-
-&quot;save_before_upload&quot;: true,
-&quot;upload_on_save&quot;: true,
-&quot;sync_down_on_open&quot;: true,
-&quot;sync_skip_deletes&quot;: false,
-&quot;sync_same_age&quot;: true,
-&quot;confirm_downloads&quot;: false,
-&quot;confirm_sync&quot;: true,
-&quot;confirm_overwrite_newer&quot;: false,
-
-&quot;host&quot;: &quot;192.168.203.216&quot;,
-&quot;user&quot;: &quot;rules&quot;,
-&quot;password&quot;: &quot;Lthis.5&quot;,
-&quot;port&quot;: &quot;22&quot;,
-
-&quot;remote_path&quot;: &quot;/home/snort/perseus6x/psconf/apd-config/event&quot;,
-&quot;ignore_regexes&quot;: [
-    &quot;\\.sublime-(project|workspace)&quot;, &quot;sftp-config(-alt\\d?)?\\.json&quot;,
-    &quot;sftp-settings\\.json&quot;, &quot;/venv/&quot;, &quot;\\.svn/&quot;, &quot;\\.hg/&quot;, &quot;\\.git/&quot;,
-    &quot;\\.bzr&quot;, &quot;_darcs&quot;, &quot;CVS&quot;, &quot;\\.DS_Store&quot;, &quot;Thumbs\\.db&quot;, &quot;desktop\\.ini&quot;
-],
-//&quot;file_permissions&quot;: &quot;664&quot;,
-//&quot;dir_permissions&quot;: &quot;775&quot;,
-
-//&quot;extra_list_connections&quot;: 0,
-
-&quot;connect_timeout&quot;: 30,
-//&quot;keepalive&quot;: 120,
-//&quot;ftp_passive_mode&quot;: true,
-//&quot;ftp_obey_passive_host&quot;: false,
-//&quot;ssh_key_file&quot;: &quot;~/.ssh/id_rsa&quot;,
-//&quot;sftp_flags&quot;: [&quot;-F&quot;, &quot;/path/to/ssh_config&quot;],
-
-//&quot;preserve_modification_times&quot;: false,
-//&quot;remote_time_offset_in_hours&quot;: 0,
-//&quot;remote_encoding&quot;: &quot;utf-8&quot;,
-//&quot;remote_locale&quot;: &quot;C&quot;,
-//&quot;allow_config_upload&quot;: false,
-}
-</code></pre><hr>
-<p> 配置完json文件，再右键点击sublime左侧<code>event</code>，进入     <code>SFTP/FTP</code>，选择<code>Sync Remote -&gt; Local</code>,即可将测试设备上的规则文件下载到本机的<code>event</code>文件中。</p>
-<p><img src="https://cl.ly/2e3W1E451Y3K/123.png" alt=" "></p>
-<hr>
-<p>选择 YES</p>
-<p><img src="https://cl.ly/0i3f2i1b2b2B/uploader.png" alt></p>
-<p> 在本地修改<code>event</code>文件下的xml规则文件，保存文件后，sublime会自动上传改动到服务器</p>
-<p>Done!</p>
-
+        
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2017/03/21/sublime安装SFTP插件/" class="archive-article-date">
-  	<time datetime="2017-03-21T14:23:20.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-03-21</time>
+      <a href="/2019/03/08/newPage/" class="archive-article-date">
+  	<time datetime="2019-03-08T07:13:51.000Z" itemprop="datePublished"><i class="icon-clock"></i>2019-03-08</time>
 </a>
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sublime/">sublime</a></li></ul>
-	</div>
-
       
 
       <div class="clearfix"></div>
@@ -240,18 +154,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/03/08/newPage/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/03/08/sql注入总结/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          newPage
+          sql注入总结
         
       </div>
     </a>
   
   
-    <a href="/2017/02/27/解决Wireshark不能识别网卡的问题/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">解决Wireshark不能识别网卡的问题</div>
+    <a href="/2017/03/21/sublime安装SFTP插件/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">sublime安装SFTP插件</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -285,7 +199,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="sublime安装SFTP插件" data-title="sublime安装SFTP插件" data-url="http://iyushan.github.io/2017/03/21/sublime安装SFTP插件/"></div>
+	<div class="ds-thread" data-thread-key="newPage" data-title="newPage" data-url="http://iyushan.github.io/2019/03/08/newPage/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
