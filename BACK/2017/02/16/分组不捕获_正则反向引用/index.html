@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="dns-prefetch" href="http://iyushan.github.io">
+  <title>?:分组不捕获 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在正则中，有一个概念是  “捕获组” ，意思是将一个正则表达式中的子表达式捕获的内容，存储到内存中以数字编号或者显式命名的组里，前者称为普通捕获组，后者称为命名捕获组。 现在只说明普通捕获组，普通捕获组是将捕获的子表达式匹配的内容存储到以数字编号的内尺中，其中数字 0 是表示所有匹配组，这种引用可以是正则表达式内部引用，也可以是外部引用。 对捕获组的内部引用被称为 “反向引用” ，反向引用的作用通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="?:分组不捕获">
+<meta property="og:url" content="http://iyushan.github.io/2017/02/16/分组不捕获_正则反向引用/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在正则中，有一个概念是  “捕获组” ，意思是将一个正则表达式中的子表达式捕获的内容，存储到内存中以数字编号或者显式命名的组里，前者称为普通捕获组，后者称为命名捕获组。 现在只说明普通捕获组，普通捕获组是将捕获的子表达式匹配的内容存储到以数字编号的内尺中，其中数字 0 是表示所有匹配组，这种引用可以是正则表达式内部引用，也可以是外部引用。 对捕获组的内部引用被称为 “反向引用” ，反向引用的作用通">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-02-17T02:07:48.316Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="?:分组不捕获">
+<meta name="twitter:description" content="在正则中，有一个概念是  “捕获组” ，意思是将一个正则表达式中的子表达式捕获的内容，存储到内存中以数字编号或者显式命名的组里，前者称为普通捕获组，后者称为命名捕获组。 现在只说明普通捕获组，普通捕获组是将捕获的子表达式匹配的内容存储到以数字编号的内尺中，其中数字 0 是表示所有匹配组，这种引用可以是正则表达式内部引用，也可以是外部引用。 对捕获组的内部引用被称为 “反向引用” ，反向引用的作用通">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/assets/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://cl.ly/472m3a0y1N0L/2.JPG" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">yu_shan</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">业精于勤荒于嬉 行成于思毁于随</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="http://www.iyushan.cn/yu_shan.html">More</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">yu_shan</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="https://cl.ly/472m3a0y1N0L/2.JPG" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">yu_shan</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">业精于勤荒于嬉 行成于思毁于随</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="http://www.iyushan.cn/yu_shan.html">More</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-分组不捕获_正则反向引用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ?:分组不捕获
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在正则中，有一个概念是  “捕获组” ，意思是将一个正则表达式中的子表达式捕获的内容，存储到内存中以数字编号或者显式命名的组里，前者称为普通捕获组，后者称为命名捕获组。</p>
+<p>现在只说明普通捕获组，普通捕获组是将捕获的子表达式匹配的内容存储到以数字编号的内尺中，其中数字 0 是表示所有匹配组，这种引用可以是正则表达式内部引用，也可以是外部引用。</p>
+<p>对捕获组的内部引用被称为 “反向引用” ，反向引用的作用通常是用来查找或限定重复、查找或限定指定标识配对出现等等。</p>
+<p> 可以在()中，添加 ?: 来使分组不被捕获，提高效率。</p>
+<p>在正则中，每一个 () 中的正则 匹配到合适的字符时会添加到寄存器中，寄存器的名字一般会进行编号，从1开始，就是第一个 () 匹配的内容。</p>
+<p>abcdebbcde</p>
+<p>==================================<br>[ab]<br>Match 1<br>Full match    0-1    <code>a</code><br>Match 2<br>Full match    1-2    <code>b</code><br>Match 3<br>Full match    5-6    <code>b</code><br>Match 4<br>Full match    6-7    <code>b</code></p>
+<p>==================================<br>([ab])<br>Match 1<br>Full match    0-1    <code>a</code><br>Group 1.    0-1    <code>a</code><br>Match 2<br>Full match    1-2    <code>b</code><br>Group 1.    1-2    <code>b</code><br>Match 3<br>Full match    5-6    <code>b</code><br>Group 1.    5-6    <code>b</code><br>Match 4<br>Full match    6-7    <code>b</code><br>Group 1.    6-7    <code>b</code></p>
+<p>================================<br>([ab])\1<br>Match 1<br>Full match    5-7    <code>bb</code><br>Group 1.    5-6    <code>b</code></p>
+<p>================================<br>([ab])\1{2}<br>Match 1<br>Full match    5-8    <code>bbb</code><br>Group 1.    5-6    <code>b</code></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2017/02/16/分组不捕获_正则反向引用/" class="archive-article-date">
+  	<time datetime="2017-02-16T10:05:42.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-02-16</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/02/27/解决Wireshark不能识别网卡的问题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          解决Wireshark不能识别网卡的问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/16/wireshark打开后不显示Interface/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">wireshark启动后不显示Interface</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="分组不捕获_正则反向引用" data-title="?:分组不捕获" data-url="http://iyushan.github.io/2017/02/16/分组不捕获_正则反向引用/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"litten-hexo"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 John Doe
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">Mr.Liu&lt;br&gt;&lt;br&gt;记录点滴，热爱生命&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

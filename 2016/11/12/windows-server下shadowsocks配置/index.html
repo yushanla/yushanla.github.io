@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iyushan.github.io">
   <title>windows_server下shadowsocks配置 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前已经配过一遍这个了，当时也已经配完可用，这几天服务器关机了，服务器重启后，竟然忘了怎么开启ss的服务端。。。这也体现了记录的重要性，又折腾了得俩小时，泪的教训啊，这次虽然是第二次配，但也经历了很多弯路，现在来记录一下刚才的辛酸俩小时。。 ss一般配置在linux下，windows下的很少，网上教程也不多，但我的服务器是windows的，一直也没换，当时就想着在windows下试一试，所有才有了">
-<meta name="keywords" content="shadowsocks windows">
+  <meta name="description" content="之前已经配过一遍这个了，当时也已经配完可用，这几天服务器关机了，服务器重启后，竟然忘了怎么开启ss的服务端。。。这也体现了记录的重要性，又折腾了得俩小时，泪的教训啊，这次虽然是第二次配，但也经历了很多弯路，现在来记录一下刚才的辛酸俩小时。。
+ss一般配置在linux下，windows下的很少，网上教程也不多，但我的服务器是windows的，一直也没换，当时就想着在windows下试一试，所有才有了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="windows_server下shadowsocks配置">
 <meta property="og:url" content="http://iyushan.github.io/2016/11/12/windows-server下shadowsocks配置/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="之前已经配过一遍这个了，当时也已经配完可用，这几天服务器关机了，服务器重启后，竟然忘了怎么开启ss的服务端。。。这也体现了记录的重要性，又折腾了得俩小时，泪的教训啊，这次虽然是第二次配，但也经历了很多弯路，现在来记录一下刚才的辛酸俩小时。。 ss一般配置在linux下，windows下的很少，网上教程也不多，但我的服务器是windows的，一直也没换，当时就想着在windows下试一试，所有才有了">
-<meta property="og:locale" content="default">
+<meta property="og:description" content="之前已经配过一遍这个了，当时也已经配完可用，这几天服务器关机了，服务器重启后，竟然忘了怎么开启ss的服务端。。。这也体现了记录的重要性，又折腾了得俩小时，泪的教训啊，这次虽然是第二次配，但也经历了很多弯路，现在来记录一下刚才的辛酸俩小时。。
+ss一般配置在linux下，windows下的很少，网上教程也不多，但我的服务器是windows的，一直也没换，当时就想着在windows下试一试，所有才有了">
 <meta property="og:image" content="https://cl.ly/2n12212C3E0U/2.JPG">
 <meta property="og:image" content="https://cl.ly/3H0B0o1r3t2Z/3.JPG">
 <meta property="og:image" content="https://cl.ly/2K0n2K1p2E1u/4.png">
@@ -23,7 +23,8 @@
 <meta property="og:updated_time" content="2016-11-12T09:52:34.500Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows_server下shadowsocks配置">
-<meta name="twitter:description" content="之前已经配过一遍这个了，当时也已经配完可用，这几天服务器关机了，服务器重启后，竟然忘了怎么开启ss的服务端。。。这也体现了记录的重要性，又折腾了得俩小时，泪的教训啊，这次虽然是第二次配，但也经历了很多弯路，现在来记录一下刚才的辛酸俩小时。。 ss一般配置在linux下，windows下的很少，网上教程也不多，但我的服务器是windows的，一直也没换，当时就想着在windows下试一试，所有才有了">
+<meta name="twitter:description" content="之前已经配过一遍这个了，当时也已经配完可用，这几天服务器关机了，服务器重启后，竟然忘了怎么开启ss的服务端。。。这也体现了记录的重要性，又折腾了得俩小时，泪的教训啊，这次虽然是第二次配，但也经历了很多弯路，现在来记录一下刚才的辛酸俩小时。。
+ss一般配置在linux下，windows下的很少，网上教程也不多，但我的服务器是windows的，一直也没换，当时就想着在windows下试一试，所有才有了">
 <meta name="twitter:image" content="https://cl.ly/2n12212C3E0U/2.JPG">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -35,7 +36,7 @@
   
 
 </head>
-</html>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -129,7 +130,7 @@
         <article id="post-windows-server下shadowsocks配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <input type="hidden" class="isFancy">
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -147,7 +148,7 @@
         <p>之前已经配过一遍这个了，当时也已经配完可用，这几天服务器关机了，服务器重启后，竟然忘了怎么开启ss的服务端。。。这也体现了记录的重要性，又折腾了得俩小时，泪的教训啊，这次虽然是第二次配，但也经历了很多弯路，现在来记录一下刚才的辛酸俩小时。。</p>
 <p>ss一般配置在linux下，windows下的很少，网上教程也不多，但我的服务器是windows的，一直也没换，当时就想着在windows下试一试，所有才有了这篇文章。</p>
 <p><strong>首先，环境配置</strong></p>
-<p><a href="https://www.python.org/downloads/" target="_blank" rel="noopener">Python</a>(我用的版本是2.7.12)+pip+<a href="https://slproweb.com/products/Win32OpenSSL.html" target="_blank" rel="noopener">openSSL</a></p>
+<p><a href="https://www.python.org/downloads/" target="_blank" rel="external">Python</a>(我用的版本是2.7.12)+pip+<a href="https://slproweb.com/products/Win32OpenSSL.html" target="_blank" rel="external">openSSL</a></p>
 <blockquote>
 <p>注意：安装python和openssl的32位或者64位要统一</p>
 </blockquote>
@@ -165,7 +166,7 @@
 <p><img src="https://cl.ly/2n12212C3E0U/2.JPG" alt="1"></p>
 <p>现在服务器端已经配置结束</p>
 <p><strong>接下来看一看客户端的配置</strong></p>
-<p>首先<a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">下载</a>ss客户端</p>
+<p>首先<a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="external">下载</a>ss客户端</p>
 <p>然后按照刚才服务器端的配置，配置客户端<br><img src="https://cl.ly/3H0B0o1r3t2Z/3.JPG" alt="2"></p>
 <p>打开 启用系统代理和全局代理</p>
 <p><img src="https://cl.ly/2K0n2K1p2E1u/4.png" alt="3"></p>
@@ -195,15 +196,6 @@
 
   
 <nav id="article-nav">
-  
-    <a href="/2017/01/08/Python-Error类型/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          &#39;Python_Error类型&#39;
-        
-      </div>
-    </a>
   
   
     <a href="/2016/11/12/windows下使用linux-非虚拟机/" id="article-nav-older" class="article-nav-link-wrap">
@@ -267,7 +259,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 John Doe
+    		&copy; 2016 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

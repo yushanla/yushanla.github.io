@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="dns-prefetch" href="http://iyushan.github.io">
+  <title>xampp添加&amp;修改mysql用户密码+设置远程连接 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="初始建站，选择了xampp这个方便简洁的环境工具，当时是为了练习渗透能力，就搭建DVWA环境，那时候，一些搭建DVWA的教程在设置mysql方面并没有详细说明，在DVWA初始化，创建数据库时，因为总是提示“no connection”，一般的解决办法是将DVWA的配置文件config.inc.php中的password设为空即可，但是今天，想尝试一些远程连接数据库，却因为没有密码，遇到了问题。 现">
+<meta name="keywords" content="xampp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xampp添加&amp;修改mysql用户密码+设置远程连接">
+<meta property="og:url" content="http://iyushan.github.io/2016/10/18/xampp添加-修改mysql用户密码-设置远程连接/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="初始建站，选择了xampp这个方便简洁的环境工具，当时是为了练习渗透能力，就搭建DVWA环境，那时候，一些搭建DVWA的教程在设置mysql方面并没有详细说明，在DVWA初始化，创建数据库时，因为总是提示“no connection”，一般的解决办法是将DVWA的配置文件config.inc.php中的password设为空即可，但是今天，想尝试一些远程连接数据库，却因为没有密码，遇到了问题。 现">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2016-10-18T13:45:28.545Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xampp添加&amp;修改mysql用户密码+设置远程连接">
+<meta name="twitter:description" content="初始建站，选择了xampp这个方便简洁的环境工具，当时是为了练习渗透能力，就搭建DVWA环境，那时候，一些搭建DVWA的教程在设置mysql方面并没有详细说明，在DVWA初始化，创建数据库时，因为总是提示“no connection”，一般的解决办法是将DVWA的配置文件config.inc.php中的password设为空即可，但是今天，想尝试一些远程连接数据库，却因为没有密码，遇到了问题。 现">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/assets/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://cl.ly/472m3a0y1N0L/2.JPG" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">yu_shan</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">业精于勤荒于嬉 行成于思毁于随</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="http://www.iyushan.cn/yu_shan.html">More</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">yu_shan</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="https://cl.ly/472m3a0y1N0L/2.JPG" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">yu_shan</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">业精于勤荒于嬉 行成于思毁于随</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="http://www.iyushan.cn/yu_shan.html">More</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-xampp添加-修改mysql用户密码-设置远程连接" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      xampp添加&amp;修改mysql用户密码+设置远程连接
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>初始建站，选择了xampp这个方便简洁的环境工具，当时是为了练习渗透能力，就搭建DVWA环境，那时候，一些搭建DVWA的教程在设置mysql方面并没有详细说明，在DVWA初始化，创建数据库时，因为总是提示“no connection”，一般的解决办法是将DVWA的配置文件<code>config.inc.php</code>中的password设为空即可，但是今天，想尝试一些远程连接数据库，却因为没有密码，遇到了问题。</p>
+<p>现在来分享一下刚才尝试的过程：</p>
+<p><strong>首先是添加或者修改mysql密码</strong></p>
+<p>1.进入xampp路径下的mysql路径</p>
+<pre><code>cd xmapp\mysql
+</code></pre><p>2.然后用空密码方式使用root用户登录 MySQL</p>
+<pre><code>mysql -u root;
+</code></pre><p>3.修改root用户的密码</p>
+<pre><code>mysql&gt;update mysql.user set Password=password(&apos;123456&apos;) where User=&apos;root&apos;;
+mysql&gt;flush privileges;
+</code></pre><p>4.重启mysql服务</p>
+<p>ps:修改了密码后，相应的也要修改DVWA和phpadmin的密码，</p>
+<p>DVWA配置文件路径：xampp\htdocs\DVWA\config\config.inc.php，将里面的password改为刚才你修改的密码即可</p>
+<p>phpmyadmin配置文件路径：\xampp\phpMyAdmin\config.inc.php，将里面的password修改为刚才的密码</p>
+<blockquote>
+<p>$cfg[‘Servers’][$i][‘auth_type’] = ‘config’;<br><br>$cfg[‘Servers’][$i][‘user’] = ‘root’;<br><br>$cfg[‘Servers’][$i][‘password’] = ‘123456’;<br><br>$cfg[‘Servers’][$i][‘extension’] = ‘mysql’;<br><br>$cfg[‘Servers’][$i][‘AllowNoPassword’] = true;</p>
+</blockquote>
+<p><strong>接下来是设置mysql远程连接</strong></p>
+<p>1.进入xampp路径下的mysql路径</p>
+<pre><code>cd xmapp\mysql
+</code></pre><p>2.授予权限</p>
+<pre><code>grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; idetified by &apos;123456&apos; with grant option;
+</code></pre><p>参数解释：</p>
+<p>all privileges ： 授予除了grant option 之外的所有权限<br><br>identified by ‘123456’： 设置连接密码<br><br>with grant option ： 这个具体还不知道，大概就是具备授予权限的权利</p>
+<p>GRANT基本的权限赋予语法</p>
+<pre><code>GRANT 权限类型1 [(要赋予的对象，列列表)][， 权限类型2[(要赋予的对象，列列表)]]...  ON [对象类型] 权限级别 TO 用户1 IDENTIFIED BY &apos;密码&apos; [, 用户2 IDENTIFIED BY &apos;密码&apos; ]...
+</code></pre><p>3.重启mysql服务，就可以进行远程登陆了</p>
+<p><strong>删除权限</strong></p>
+<p>REVOKE基本的权限收回语法：</p>
+<pre><code>REVOKE 权限类型1[(回收权限的列对象列表)], 权限类型2[(要回收权限的列对象列表)]... ON [对象类型] 权限级别 FROM 要回收权限的用户1 [,要回收权限的用户2]..
+</code></pre><p>基本和grant相同，主要是 to 换成 from</p>
+<blockquote>
+</blockquote>
+<p><a href="http://blog.useasp.net/archive/2013/06/19/mysql-user-privileges-configuration-and-management-by-show-grant-and-revoke-syntax.aspx" target="_blank" rel="noopener">http://blog.useasp.net/archive/2013/06/19/mysql-user-privileges-configuration-and-management-by-show-grant-and-revoke-syntax.aspx</a></p>
+<p>这个博客写的不错，可以看看</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/10/18/xampp添加-修改mysql用户密码-设置远程连接/" class="archive-article-date">
+  	<time datetime="2016-10-18T12:47:57.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-18</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xampp/">xampp</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/11/09/小玩意儿/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          小玩意儿
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/11/用sqlmap进行盲注测试/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">用sqlmap进行盲注测试</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="xampp添加-修改mysql用户密码-设置远程连接" data-title="xampp添加&amp;修改mysql用户密码+设置远程连接" data-url="http://iyushan.github.io/2016/10/18/xampp添加-修改mysql用户密码-设置远程连接/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"litten-hexo"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 John Doe
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">Mr.Liu&lt;br&gt;&lt;br&gt;记录点滴，热爱生命&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

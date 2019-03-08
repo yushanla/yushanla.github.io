@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iyushan.github.io">
   <title>用sqlmap进行盲注测试 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天来试试sql的盲注测试，不是手工，而是用sqlmap这个神器。 关于传统sql注入和sql盲注的区别，目前我只知道盲注是sql注入的一种，盲注是在渗透者不知情的情况下对网站数据库数据进行不断猜测的注入。  sqlmap支持五种不同的注入模式：  1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。  2、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执">
-<meta name="keywords" content="sql注入">
+  <meta name="description" content="今天来试试sql的盲注测试，不是手工，而是用sqlmap这个神器。
+关于传统sql注入和sql盲注的区别，目前我只知道盲注是sql注入的一种，盲注是在渗透者不知情的情况下对网站数据库数据进行不断猜测的注入。
+
+sqlmap支持五种不同的注入模式：
+1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。
+2、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用sqlmap进行盲注测试">
 <meta property="og:url" content="http://iyushan.github.io/2016/10/11/用sqlmap进行盲注测试/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="今天来试试sql的盲注测试，不是手工，而是用sqlmap这个神器。 关于传统sql注入和sql盲注的区别，目前我只知道盲注是sql注入的一种，盲注是在渗透者不知情的情况下对网站数据库数据进行不断猜测的注入。  sqlmap支持五种不同的注入模式：  1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。  2、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执">
-<meta property="og:locale" content="default">
+<meta property="og:description" content="今天来试试sql的盲注测试，不是手工，而是用sqlmap这个神器。
+关于传统sql注入和sql盲注的区别，目前我只知道盲注是sql注入的一种，盲注是在渗透者不知情的情况下对网站数据库数据进行不断猜测的注入。
+
+sqlmap支持五种不同的注入模式：
+1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。
+2、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（">
 <meta property="og:image" content="https://cl.ly/3d1Z3o1c0U1h/1.JPG">
 <meta property="og:image" content="https://cl.ly/0n2m0b2j110A/2.JPG">
 <meta property="og:image" content="https://cl.ly/3G2P2o1k0i1s/3.JPG">
@@ -25,7 +33,12 @@
 <meta property="og:updated_time" content="2016-10-11T15:02:57.369Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用sqlmap进行盲注测试">
-<meta name="twitter:description" content="今天来试试sql的盲注测试，不是手工，而是用sqlmap这个神器。 关于传统sql注入和sql盲注的区别，目前我只知道盲注是sql注入的一种，盲注是在渗透者不知情的情况下对网站数据库数据进行不断猜测的注入。  sqlmap支持五种不同的注入模式：  1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。  2、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执">
+<meta name="twitter:description" content="今天来试试sql的盲注测试，不是手工，而是用sqlmap这个神器。
+关于传统sql注入和sql盲注的区别，目前我只知道盲注是sql注入的一种，盲注是在渗透者不知情的情况下对网站数据库数据进行不断猜测的注入。
+
+sqlmap支持五种不同的注入模式：
+1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。
+2、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（">
 <meta name="twitter:image" content="https://cl.ly/3d1Z3o1c0U1h/1.JPG">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -37,7 +50,7 @@
   
 
 </head>
-</html>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -131,7 +144,7 @@
         <article id="post-用sqlmap进行盲注测试" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <input type="hidden" class="isFancy">
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -150,18 +163,10 @@
 <p>关于传统sql注入和sql盲注的区别，目前我只知道盲注是sql注入的一种，盲注是在渗透者不知情的情况下对网站数据库数据进行不断猜测的注入。</p>
 <blockquote>
 <p>sqlmap支持五种不同的注入模式：</p>
-</blockquote>
 <p>1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。</p>
-<blockquote>
 <p>2、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（即页面返回时间是否增加）来判断。</p>
-</blockquote>
-<blockquote>
 <p>3、基于报错注入，即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中。&gt;</p>
-</blockquote>
-<blockquote>
 <p>4、联合查询注入，可以使用union的情况下的注入。</p>
-</blockquote>
-<blockquote>
 <p>5、堆查询注入，可以同时执行多条语句的执行时的注入。</p>
 </blockquote>
 <p>今天还是以DVWA来作为测试环境</p>
@@ -173,10 +178,7 @@
 <p>-r：sqlmap可以从一个文本文件中获取HTTP请求，这样就可以跳过设置一些其他参数（比如cookie，POST数据，等等）。当请求是HTTPS的时候你需要配合这个–force-ssl参数来使用，或者你可以在Host头后面加上:443。</p>
 <p>–cookie : DVWA如果不加上cookie就会302跳转</p>
 <p>之后sqlmap界面会出现一系列测试的条目，其中有一些需要我们注意<br><img src="https://cl.ly/3d1Z3o1c0U1h/1.JPG" alt="1"><br>下面是sqlmap尝试的一些注入点<br><img src="https://cl.ly/0n2m0b2j110A/2.JPG" alt="2"></p>
-<p>sqlmap发现id参数存在error-based、time-based blind、UNION query三种注入漏洞，现在我们来试试第一个，通过–technique选线实现，如下列表中是该选项的参数。</p>
-<blockquote>
-</blockquote>
-<p>B : 基于Boolean的盲注（Boolean based blind）<br><br>Q : 内联查询（Inline queries）<br><br>T : 基于时间的盲注（time based blind）<br><br>U : 基于联合查询（Union query based）<br><br>E : 基于错误（error based）<br><br>S : 栈查询（stack queries）</p>
+<p>sqlmap发现id参数存在error-based、time-based blind、UNION query三种注入漏洞，现在我们来试试第一个，通过–technique选线实现，如下列表中是该选项的参数。<br>&gt;<br>B : 基于Boolean的盲注（Boolean based blind）<br><br>Q : 内联查询（Inline queries）<br><br>T : 基于时间的盲注（time based blind）<br><br>U : 基于联合查询（Union query based）<br><br>E : 基于错误（error based）<br><br>S : 栈查询（stack queries）</p>
 <p>构造命令：</p>
 <pre><code>sqlmap.py -r headers.txt --cookie=&quot;security=low; PHPSESSID=p8hgdmvsrtuagjkuprfg8pjle7&quot; --technique B -p id --current-user
 </code></pre><p>参数解释：<br>–current-user ： 强制SQLmap查询并显示登录MYSQL数据库系统的当前用户。</p>
@@ -190,7 +192,7 @@
 <p><img src="https://cl.ly/0l0F1o002t12/4.JPG" alt="4"></p>
 <p>因为在DVWA的mysql中，没有为root@localhost指定password，所以现在得到的password只是一个NULL</p>
 <hr>
-<p>##传统sql注入<br>    sqlmap.py -u “http://<em>.</em>.<em>.</em>/DV/vulnerabilities/sqli/?id=1&amp;Submit=Submit#” –cookie=”security=low; PHPSESSID=p8hgdmvsrtuagjkuprfg8pjle7” -b –current-db –current-user<br>参数解释：<br>-b ： 获取DBMS banner</p>
+<p>##传统sql注入<br>    sqlmap.py -u “<a href="http://*.*.*.*/DV/vulnerabilities/sqli/?id=1&amp;Submit=Submit#" target="_blank" rel="external">http://*.*.*.*/DV/vulnerabilities/sqli/?id=1&amp;Submit=Submit#</a>“ –cookie=”security=low; PHPSESSID=p8hgdmvsrtuagjkuprfg8pjle7” -b –current-db –current-user<br>参数解释：<br>-b ： 获取DBMS banner</p>
 <p>–currnet-db ： 获取当前数据库</p>
 <p>结果如下：</p>
 <p><img src="https://cl.ly/1v2H413c3Y3z/5.JPG" alt="5"></p>
@@ -298,7 +300,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 John Doe
+    		&copy; 2016 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

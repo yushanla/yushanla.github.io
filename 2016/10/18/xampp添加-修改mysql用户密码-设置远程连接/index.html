@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iyushan.github.io">
   <title>xampp添加&amp;修改mysql用户密码+设置远程连接 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="初始建站，选择了xampp这个方便简洁的环境工具，当时是为了练习渗透能力，就搭建DVWA环境，那时候，一些搭建DVWA的教程在设置mysql方面并没有详细说明，在DVWA初始化，创建数据库时，因为总是提示“no connection”，一般的解决办法是将DVWA的配置文件config.inc.php中的password设为空即可，但是今天，想尝试一些远程连接数据库，却因为没有密码，遇到了问题。 现">
-<meta name="keywords" content="xampp">
+  <meta name="description" content="初始建站，选择了xampp这个方便简洁的环境工具，当时是为了练习渗透能力，就搭建DVWA环境，那时候，一些搭建DVWA的教程在设置mysql方面并没有详细说明，在DVWA初始化，创建数据库时，因为总是提示“no connection”，一般的解决办法是将DVWA的配置文件config.inc.php中的password设为空即可，但是今天，想尝试一些远程连接数据库，却因为没有密码，遇到了问题。
+现">
 <meta property="og:type" content="article">
-<meta property="og:title" content="xampp添加&amp;修改mysql用户密码+设置远程连接">
+<meta property="og:title" content="xampp添加&修改mysql用户密码+设置远程连接">
 <meta property="og:url" content="http://iyushan.github.io/2016/10/18/xampp添加-修改mysql用户密码-设置远程连接/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="初始建站，选择了xampp这个方便简洁的环境工具，当时是为了练习渗透能力，就搭建DVWA环境，那时候，一些搭建DVWA的教程在设置mysql方面并没有详细说明，在DVWA初始化，创建数据库时，因为总是提示“no connection”，一般的解决办法是将DVWA的配置文件config.inc.php中的password设为空即可，但是今天，想尝试一些远程连接数据库，却因为没有密码，遇到了问题。 现">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2016-10-18T13:45:28.545Z">
+<meta property="og:description" content="初始建站，选择了xampp这个方便简洁的环境工具，当时是为了练习渗透能力，就搭建DVWA环境，那时候，一些搭建DVWA的教程在设置mysql方面并没有详细说明，在DVWA初始化，创建数据库时，因为总是提示“no connection”，一般的解决办法是将DVWA的配置文件config.inc.php中的password设为空即可，但是今天，想尝试一些远程连接数据库，却因为没有密码，遇到了问题。
+现">
+<meta property="og:updated_time" content="2016-10-18T13:45:28.544Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xampp添加&amp;修改mysql用户密码+设置远程连接">
-<meta name="twitter:description" content="初始建站，选择了xampp这个方便简洁的环境工具，当时是为了练习渗透能力，就搭建DVWA环境，那时候，一些搭建DVWA的教程在设置mysql方面并没有详细说明，在DVWA初始化，创建数据库时，因为总是提示“no connection”，一般的解决办法是将DVWA的配置文件config.inc.php中的password设为空即可，但是今天，想尝试一些远程连接数据库，却因为没有密码，遇到了问题。 现">
+<meta name="twitter:title" content="xampp添加&修改mysql用户密码+设置远程连接">
+<meta name="twitter:description" content="初始建站，选择了xampp这个方便简洁的环境工具，当时是为了练习渗透能力，就搭建DVWA环境，那时候，一些搭建DVWA的教程在设置mysql方面并没有详细说明，在DVWA初始化，创建数据库时，因为总是提示“no connection”，一般的解决办法是将DVWA的配置文件config.inc.php中的password设为空即可，但是今天，想尝试一些远程连接数据库，却因为没有密码，遇到了问题。
+现">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -30,7 +31,7 @@
   
 
 </head>
-</html>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -124,7 +125,7 @@
         <article id="post-xampp添加-修改mysql用户密码-设置远程连接" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <input type="hidden" class="isFancy">
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -170,9 +171,7 @@ mysql&gt;flush privileges;
 <p>REVOKE基本的权限收回语法：</p>
 <pre><code>REVOKE 权限类型1[(回收权限的列对象列表)], 权限类型2[(要回收权限的列对象列表)]... ON [对象类型] 权限级别 FROM 要回收权限的用户1 [,要回收权限的用户2]..
 </code></pre><p>基本和grant相同，主要是 to 换成 from</p>
-<blockquote>
-</blockquote>
-<p><a href="http://blog.useasp.net/archive/2013/06/19/mysql-user-privileges-configuration-and-management-by-show-grant-and-revoke-syntax.aspx" target="_blank" rel="noopener">http://blog.useasp.net/archive/2013/06/19/mysql-user-privileges-configuration-and-management-by-show-grant-and-revoke-syntax.aspx</a></p>
+<p>&gt;<br><a href="http://blog.useasp.net/archive/2013/06/19/mysql-user-privileges-configuration-and-management-by-show-grant-and-revoke-syntax.aspx" target="_blank" rel="external">http://blog.useasp.net/archive/2013/06/19/mysql-user-privileges-configuration-and-management-by-show-grant-and-revoke-syntax.aspx</a></p>
 <p>这个博客写的不错，可以看看</p>
 
       
@@ -269,7 +268,7 @@ mysql&gt;flush privileges;
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 John Doe
+    		&copy; 2016 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
