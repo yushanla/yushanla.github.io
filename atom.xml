@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://smart.hyggehyy.com/</id>
+    <title>Hyggehyy</title>
+    <updated>2021-03-07T09:41:35.223Z</updated>
+    <generator>Saber</generator>
+    <author>
+        <name/>
+        <uri>https://smart.hyggehyy.com</uri>
+    </author>
+    <link rel="alternate" href="https://smart.hyggehyy.com"/>
+    <link rel="self" href="https://smart.hyggehyy.com/atom.xml"/>
+    <subtitle>Everything is gonna be ok.</subtitle>
+    <rights>All rights reserved</rights>
+    <entry>
+        <title type="html"><![CDATA[跳转第三方App]]></title>
+        <id>https://smart.hyggehyy.com/2021/03/07/%E8%B7%B3%E8%BD%AC%E7%AC%AC%E4%B8%89%E6%96%B9App</id>
+        <link href="https://smart.hyggehyy.com/2021/03/07/%E8%B7%B3%E8%BD%AC%E7%AC%AC%E4%B8%89%E6%96%B9App"/>
+        <updated>2021-03-07T09:40:03.161Z</updated>
+        <summary type="html"><![CDATA[项目中遇到了需要跳转第三方App的需求，在当前项目App跳转至自家其他App。
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="遇到问题">遇到问题</h2> <p>项目中遇到了需要跳转第三方App的需求，在当前项目App跳转至自家其他App。</p> <h2 id="可行方案">可行方案</h2> <p>查阅资料后发现5+API中有需要的功能接口<code>plus.runtime.launchApplication</code>，直接调用即可。</p> <p>首先判断用户设备上是否安装了需要跳转的App，如果有则跳转，否则执行其他操作（如：下载App等）。</p> <p>在App间跳转时也可以携带参数，方便联动，需要使用接口<code>plus.runtime.openUR</code>。</p> <h2 id="实现细节">实现细节</h2> <p>假设<strong>应用A</strong>跳转至<strong>应用B</strong></p> <p>判断用户设备中是否安装<strong>应用B</strong></p> <p><em><code>pname</code>参数是<strong>应用B</strong>的包名</em></p> <div class="saber-highlight" data-lang="js"><pre class="saber-highlight-code language-js"><code class="language-js">plus.runtime.isApplicationExist({
+    pname: 'com.tencent.mm'				// 以微信为例
+})</code></pre></div><p>跳转</p> <div class="saber-highlight" data-lang="js"><pre class="saber-highlight-code language-js"><code class="language-js">plus.runtime.launchApplication({
+    pname: 'com.tencent.mm'
+}, err =&gt; {
+    console.log('Error:', err)
+} );</code></pre></div><h3 id="传递参数">传递参数</h3> <p>App间传递参数的话，需要使用<code>scheme</code>，先在<strong>应用B</strong>manifest.json中首先声明<code>scheme</code>。</p> <p><img src="https://ls-img-store.oss-cn-qingdao.aliyuncs.com/img/20210307.png" alt="20210307"></p> <p><strong>应用A</strong>执行跳转操作</p> <div class="saber-highlight" data-lang="js"><pre class="saber-highlight-code language-js"><code class="language-js">plus.runtime.openURL(&quot;zsffkop://search?key=cruiser&quot;);</code></pre></div><p><strong>应用B</strong>可以在<code>onshow()</code>中获取参数</p> <div class="saber-highlight" data-lang="js"><pre class="saber-highlight-code language-js"><code class="language-js">onShow(){
+    // #ifdef APP-PLUS
+    console.log('arguments: ', plus.runtime.arguments)	// zsffkop://search?key=cruiser
+    // #endif
+}</code></pre></div>]]></content>
+        <published>2021-03-07T00:00:00.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[简易3D模型]]></title>
+        <id>https://smart.hyggehyy.com/2021/02/28/%E7%AE%80%E6%98%933D%E6%A8%A1%E5%9E%8B</id>
+        <link href="https://smart.hyggehyy.com/2021/02/28/%E7%AE%80%E6%98%933D%E6%A8%A1%E5%9E%8B"/>
+        <updated>2021-03-07T09:40:11.149Z</updated>
+        <summary type="html"><![CDATA[年前兴起了酒包装定制的热潮，公司也有个相关项目，其中，需要一个页面来展示酒盒定制后的3D旋转模型。效果图如下：
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="遇到问题">遇到问题</h2> <p>年前兴起了酒包装定制的热潮，公司也有个相关项目，其中，需要一个页面来展示酒盒定制后的3D旋转模型。效果图如下：</p> <p><img src="https://ls-img-store.oss-cn-qingdao.aliyuncs.com/img/box3dDemo.gif" alt=""></p> <h2 id="可行方案">可行方案</h2> <p>由于页面需要的只是一个拥有包装图案的简单立方体，没必要建模，仅通过<code>three.js</code>自带的模型即可解决。虽然之前没有接触过<code>three.js</code>，但上手还算容易，通过调整<a rel="noopener noreferrer" target="_blank" href="http://www.webgl3d.cn/Three.js/">案例</a>中的一些参数即可实现需要的效果。</p> <h2 id="实现细节">实现细节</h2> <p>使用<code>three.js</code>通过内置模型实现效果，一般需要以下几步：</p> <p><img src="https://ls-img-store.oss-cn-qingdao.aliyuncs.com/img/image-20210307154645717.png" alt="image-20210307154645717"></p> <p>关键代码如下：</p> <div class="saber-highlight" data-lang="js"><pre class="saber-highlight-code language-js"><code class="language-js">boxModelLoad: function(boxImg){
+
+    /**
+	* 创建场景对象Scene
+	*/
+    var scene = new THREE.Scene();
+
+    // 由于模型大小并不确定，所以在长宽高中计算中最大值，然后其他两边按比例做小，以确保每个边都在屏幕显示范围之内
+    let norm = 336
+    let maxSize = this.boxModelSize[0]
+    let maxIndex = 0
+    for(let m in this.boxModelSize) {
+        if(Number(this.boxModelSize[m]) &gt; maxSize) {
+            maxSize = Number(this.boxModelSize[m])
+            maxIndex = m
+        }
+    }
+    let propotion = norm /maxSize
+    for(let m in this.boxModelSize) {
+        if(maxIndex == m) this.boxModelSize[maxIndex] = norm
+        else {
+            this.boxModelSize[m] = propotion *this.boxModelSize[m]
+        }
+    }
+
+    /**
+	 * 创建网格模型
+	 * 创建一个立方体对象
+	 * 长宽高由上面计算得出
+	 */
+    var geometry = new THREE.BoxGeometry(this.boxModelSize[1], this.boxModelSize[2], this.boxModelSize[0]); 
+
+    var mesh
+    var textureLoader = new THREE.TextureLoader();
+
+    /**
+	 * 准备材质对象
+	 * 立方体六个平面需要六个不同的图片
+	 */
+    // 前
+    var texture1 = textureLoader.load(boxImg);
+    var material_1 = new THREE.MeshLambertMaterial({
+        map: texture1, // 设置纹理贴图
+    });
+
+    // 后
+    var texture2 = textureLoader.load(this.boxModelBackLink ? this.boxModelBackLink: boxImg);
+    var material_2 = new THREE.MeshLambertMaterial({
+        map: texture2, // 设置纹理贴图
+    });
+
+    // 上
+    var texture3 = textureLoader.load(this.boxModelTopLink);
+    var material_3 = new THREE.MeshLambertMaterial({
+        map: texture3, // 设置纹理贴图
+    });
+
+    // 下
+    var texture4 = textureLoader.load('data:image/png;base64,iVBORw0KGgoAAkJggg==');
+    var material_4 = new THREE.MeshLambertMaterial({
+        map: texture4, // 设置纹理贴图
+    });
+
+    // 左
+    var texture5 = textureLoader.load(this.boxModelLeftLink);
+    var material_5 = new THREE.MeshLambertMaterial({
+        map: texture5, // 设置纹理贴图
+    });
+
+    // 右
+    var texture6 = textureLoader.load(this.boxModelRightLink);
+    var material_6 = new THREE.MeshLambertMaterial({
+        map: texture6, // 设置纹理贴图
+    });
+
+    var materialArr = [material_1, material_2, material_3, material_4, material_5, material_6]
+
+    //网格模型对象Mesh
+    mesh = new THREE.Mesh(geometry, materialArr); 
+    //网格模型添加到场景中
+    scene.add(mesh); 
+
+    /**
+	 * 光源位置
+	 * 分为点光源和环境光两种
+	 */
+
+    //点光源
+    // var point = new THREE.PointLight(0xaaaaaa);
+    // point.position.set(400, 160, 300); //点光源位置
+    // point.castShadow = true;            // default false
+    // scene.add(point); //点光源添加到场景中
+    //环境光
+    var ambient = new THREE.AmbientLight(0xffffff);
+    scene.add(ambient);
+
+    /**
+	 * 相机设置
+	 * 创建相机对象
+	 */
+
+    var width = window.innerWidth; //窗口宽度
+    var height = 350; //窗口高度
+    var k = width / height; //窗口宽高比
+    var s = 200; //三维场景显示范围控制系数，系数越大，显示的范围越大
+    //创建相机对象
+    var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
+    camera.position.set(900, 100, 100); //设置相机位置
+    camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
+
+    /**
+	 * 创建渲染器对象
+	 */
+    var renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true
+    });
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+    //设置canvas的像素比为当前设备的屏幕像素比，避免高分屏下模糊
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize(width, height);//设置渲染区域尺寸
+    renderer.setClearColor(0xf8f8f8, 1); //设置背景颜色
+    //在需要的元素中插入canvas对象
+    document.getElementById('boxModel').appendChild(renderer.domElement); 
+
+    /**
+	 * 执行渲染操作
+	 * 并添加旋转效果
+	 */
+    let T0 = new Date();//上次时间
+    function render() {
+        let T1 = new Date();//本次时间
+        let t = T1-T0;//时间差
+        T0 = T1;//把本次时间赋值给上次时间
+        requestAnimationFrame(render);
+        renderer.render(scene,camera);//执行渲染操作
+        mesh.rotateY(0.0005*t);//旋转角速度0.001弧度每毫秒
+    }
+    render();
+}</code></pre></div><h2 id="总结">总结</h2> <p><code>three.js</code>还有许多其他功能，但是如果不是经常使用的话，也没有必要每个都去了解，大概浏览下功能，需要的时候再去挑着细看，也不失为一个提高效率的办法。</p>]]></content>
+        <published>2021-02-28T00:00:00.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[音频播放控制]]></title>
+        <id>https://smart.hyggehyy.com/2021/02/25/%E9%9F%B3%E9%A2%91%E6%92%AD%E6%94%BE</id>
+        <link href="https://smart.hyggehyy.com/2021/02/25/%E9%9F%B3%E9%A2%91%E6%92%AD%E6%94%BE"/>
+        <updated>2021-03-07T09:40:16.236Z</updated>
+        <summary type="html"><![CDATA[最近做知识付费app的项目时，需要一个音频/视频播放页，视频播放直接使用官方提供的&lt;video&gt;组件就可，但是在做音频播放页面时遇到了两个问题：
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="遇到问题">遇到问题</h2> <p>最近做知识付费app的项目时，需要一个音频/视频播放页，视频播放直接使用官方提供的<code>&lt;video&gt;</code>组件就可，但是在做音频播放页面时遇到了两个问题：</p> <ul><li>关于音频播放的音频组件<code>&lt;audio&gt;</code>力不从心，难以实现<strong>倍速播放</strong>功能（硬伤</li> <li>音频播放进度条</li></ul> <h2 id="可行方案">可行方案</h2> <p>针对第一个问题，可以使用<code>&lt;video&gt;</code>组件实现，然后通过css把<code>&lt;video&gt;</code>隐藏。</p> <p>针对第二个问题，由于项目中引入了<code>uView</code>框架，便采用了<code>u-slider</code>来实现，但其中一些拖拉/点击/进度控制等效果仍需自行解决。</p> <h2 id="实现细节">实现细节</h2> <p>首先，贴下效果图：</p> <img src="https://ls-img-store.oss-cn-qingdao.aliyuncs.com/img/audio.png" alt="audio" style="zoom:25%;"> <h3 id="解决问题一">解决问题一</h3> <p>代码如下：</p> <div class="saber-highlight" data-lang="vue"><pre class="saber-highlight-code language-vue"><code class="language-vue">&lt;!-- template --&gt;
+&lt;video id=&quot;myVideo&quot; :src=&quot;audioUrl&quot; :initial-time=&quot;initialTime&quot; class=&quot;hidden&quot; @timeupdate=&quot;timeupdate&quot; ref=&quot;video&quot;&gt;&lt;/video&gt;
+
+&lt;!-- script --&gt;
+export default {
+	data() {
+		return {
+			
+			videoContext: null,									// 资源对象 在mount()中初始化
+			audioUrl '',										// 音频地址
+			initialTime: '',									// 初始播放位置
+			playbackRateList: ['0.5', '0.8', '1.0', '1.25', '1.5'],	// 倍速可选值
+			playbackRateIndex: 2,								 // 当前倍速Index
+			processUnit2Second： 0，								// 进度条滑动一个单位时音频秒数的变化 在mount()中初始化
+
+		}
+	}，
+	
+	methods: {
+		
+		/**
+          * @@description 视频方法
+          * 
+          */
+			 
+		// 倍速
+        setRate: function(num) {
+
+            // 当前时间进度倍率
+            if(num === 0.5) this.interval = 2000
+            if(num === 0.8) this.interval = 1250
+            if(num === 1) this.interval = 1000
+            if(num === 1.25) this.interval = 800
+            if(num === 1.5) this.interval = 666.666667
+            this.auidoControl(false)
+
+            // 视频倍率
+            this.videoContext.playbackRate(num)
+
+        },
+        // 播放
+        play: function() {
+        	this.videoContext.play()
+        },
+        // 暂停
+        stop: function() {
+        	this.videoContext.pause()
+        },
+        // 跳转到置顶时间位置
+        seek: function(sec) {
+        	this.videoContext.seek(sec)
+        },
+        // 播放进度变化时触发
+        timeupdate: function(evt) {
+        	// console.log(evt.target.currentTime)
+        },
+        
+        /**
+         * @description 功能区点击事件
+         * 	    id: 0,
+                name: '目录'
+                id: 1,
+                name: '倍速',
+                id: 2,
+                name: '定时'
+                id: 3,
+                name: '下载'
+                id: 4,
+                name: '评论'
+                * 
+         */
+        funcClick: function(item, index) {
+
+		   // 倍速播放
+            if(item.id === 1) {
+
+                // 样式变化 
+                if(this.playbackRateIndex === 4) this.playbackRateIndex = 0
+                else this.playbackRateIndex ++
+                this.$set(item, 'name', 'x' + String(this.playbackRateList[this.playbackRateIndex]))
+
+                // 音频进度条变化
+                this.setRate(Number(this.playbackRateList[this.playbackRateIndex]))
+                
+            }
+
+		},
+		
+	},
+	
+	mounted() {
+			
+			// 获取视频对象
+			this.videoContext = uni.createVideoContext('myVideo')
+			
+			// 滑动一格进度条 当前音频秒数的变化长度
+			this.processUnit2Second = this.parseTime(this.audioLength) / 100
+			
+		}
+}
+
+&lt;!-- css --&gt;
+.hidden {
+    position: fixed;
+    z-index: -1;
+    width: 1rpx;
+    height: 1rpx;
+}</code></pre></div><h3 id="解决问题二">解决问题二</h3> <p>两个需要实现的细节：</p> <ol><li>拖动进度条时，左侧的播放时间需要跟随变化，且音频从<code>touchend()</code>触发时的位置开始播放，点击进度条同理。（代码见下）</li> <li>倍速播放时，进度条同时倍速前进。（相关代码见“解决问题一”）</li></ol> <div class="saber-highlight" data-lang="vue"><pre class="saber-highlight-code language-vue"><code class="language-vue">&lt;!-- template --&gt;
+&lt;view class=&quot;process__line&quot; @tap=&quot;checkAudioProcess&quot;&gt;
+    &lt;u-slider 
+              class=&quot;&quot; 
+              use-slot
+              active-color=&quot;#537AE0&quot;
+              v-model=&quot;processValue&quot; 
+              @start=&quot;processStart&quot;
+              @moving=&quot;processMoving&quot;
+              @end=&quot;processEnd&quot;
+              &gt;
+        &lt;view class=&quot;&quot;&gt;
+            &lt;view class=&quot;process__line__badge&quot;&gt;&lt;/view&gt;
+        &lt;/view&gt;
+    &lt;/u-slider&gt;
+&lt;/view&gt;
+
+&lt;!-- script --&gt;
+export default {
+	data(){
+		return {
+			
+			processMask: false,				// 禁用watch中processVale监听
+			audioNow: '00:00',				// 当前音频播放时间
+			audioLength: '00:21',			// 音频时长
+			processValue: 0,				// 音频进度条当前值
+
+		}
+	}，
+
+	methods: {
+	
+			/**
+			 * @description 播放状态调整
+			 * @param {Boolean} control 兼容在播放时拖动/点击进度条的情况
+			 */
+			auidoControl: function(control=true) {
+				
+				let _this = this
+				if(control) this.playing = !this.playing
+				else clearInterval(this.playingInterval)
+				this.processMask = false
+				
+				// 视频控制
+				if(this.playing) {
+					
+					// 如果当前音频已经播放结束 则重头播放
+					if(this.audioNow == this.audioLength) {
+						
+						this.audioNow = '00:00'
+						this.processValue = 0
+						
+					} 
+					
+					this.playingInterval = setInterval(() =&gt; {
+						_this.audioNow = _this.parseSeconds(_this.parseTime(_this.audioNow) + 1)
+						let res = Decimal.div(_this.parseTime(_this.audioNow), _this.parseTime(_this.audioLength)).toNumber() *100
+						_this.processValue = String(res).split('.')[0]
+						
+						// 当前音频播放完毕 执行相应事件
+						if(_this.processValue &gt;= 100) {
+							
+							clearInterval(_this.playingInterval)
+							this.playing = false
+							// 播放下一首
+							
+						}
+					}, this.interval)
+					this.play()
+					
+				}
+				else {
+					
+					clearInterval(this.playingInterval)
+					this.stop()
+					
+				}
+				
+			},
+			
+			checkAudioProcess: function() {
+				this.processMask = true
+			}
+	
+	},
+
+	watch: {
+			// 当点击进度条时 相应地调整音频播放进度
+			processValue: function() {
+				
+				let _this = this
+				setTimeout(() =&gt; {
+					if(_this.processMask) {
+						
+						_this.audioNow = _this.parseSeconds(_this.processValue * _this.processUnit2Second)
+						_this.auidoControl(false)
+						_this.seek(_this.parseTime(_this.audioNow))
+						
+					}
+				}, 50)
+			}
+		},
+}
+
+&lt;!-- css --&gt;
+.process {
+    margin: 80rpx 0;
+
+    &amp;__time {
+        opacity: .3;
+        font-size: 24rpx;
+    }
+
+        &amp;__line {
+        width: 500rpx;
+
+        &amp;__badge {
+            position: relative;
+            top: 2rpx;
+            width: 30rpx;
+            height: 30rpx;
+            border-radius: 50%;
+            background-color: #fff;
+
+            &amp;::after {
+                content: '';
+                width: 12rpx;
+                height: 12rpx;
+                border-radius: 50%;
+                background-color: #666;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+    }
+
+}</code></pre></div><h2 id="总结">总结</h2> <p>想到解决办法后，在实施过程中并没有什么坑点，所以终归是个经验问题。</p> <p>在处理进度条时，本来是自己尝试写一个的，但实现后发现拖拉过程并不流畅，想来应该是逻辑层和视图层的通信频率没有处理好，等有时间填坑。</p>]]></content>
+        <published>2021-02-25T00:00:00.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[uniapp功能模块汇总]]></title>
+        <id>https://smart.hyggehyy.com/2021/01/31/uniapp%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E6%B1%87%E6%80%BB</id>
+        <link href="https://smart.hyggehyy.com/2021/01/31/uniapp%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E6%B1%87%E6%80%BB"/>
+        <updated>2021-03-07T09:40:32.497Z</updated>
+        <summary type="html"><![CDATA[一些功能模块在每个项目中都会用到，将它们抽象或汇总出来，复用到每个项目中去，是一个省时省力的方法。
+]]></summary>
+        <content type="html"><![CDATA[<p>一些功能模块在每个项目中都会用到，将它们抽象或汇总出来，复用到每个项目中去，是一个省时省力的方法。</p> <p>下面以常用项目目录的形式，说明复用度高的一些功能模块。</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">D:.
+│  App.vue
+│  main.js
+│  manifest.json
+│  package-lock.json
+│  pages.json
+│  tree.res
+│  uni.scss
+│  
+├─common
+│  ├─font					// 字体
+│  │   iconfont.ttf
+│  │      
+│  ├─js						// 工具库
+│  │   graceChecker.js		 // 表单验证
+│  │   http.js  		     // request 封装
+│  │   mixins.js              // 页面工具组
+│  │   region.js              // 地址列表
+│  │   utils.js               // 常用工具函数
+│  │      
+│  ├─style                    // 样式
+│  │  │  common.scss          // 页面样式
+│  │  │  
+│  │  └─colorui
+│  │              
+│  └─vender
+│                  
+├─components                 // 组件
+│   nodata.vue               // 页面展示管理
+│   joy-page.vue             // 页面状态管理
+│   page-header.vue          // 页面导航栏
+│          
+├─config                     // 配置信息
+│   api.index.js             // 数据接口信息
+│   form-check-rule.js       // 表单验证
+│   mapping.index.js         // 数据映射表
+│   route.index.js           // 路由信息
+│              
+├─pages
+│              
+├─static
+│              
+├─store
+│              
+├─uView         // UI框架
+│ 
+└─unpackage</code></pre></div>]]></content>
+        <published>2021-01-31T00:00:00.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[uniapp技术解决方案]]></title>
+        <id>https://smart.hyggehyy.com/2021/01/17/uniapp%E6%8A%80%E6%9C%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88</id>
+        <link href="https://smart.hyggehyy.com/2021/01/17/uniapp%E6%8A%80%E6%9C%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"/>
+        <updated>2021-03-07T09:40:40.917Z</updated>
+        <summary type="html"><![CDATA[uniapp 作为前端全端开发工具，很好的弥合了各种前端应用的差异，基本上实现了“一套代码全端实现”。
+]]></summary>
+        <content type="html"><![CDATA[<p>uniapp 作为前端全端开发工具，很好的弥合了各种前端应用的差异，基本上实现了“一套代码全端实现”。</p> <p>在使用过程中，难免遇到各种问题，填坑是常态，所以下面整理的填坑思维导图就很有必要了。</p> <p><img src="https://ls-img-store.oss-cn-qingdao.aliyuncs.com/img/article-01-verticle.png" alt=""></p>]]></content>
+        <published>2021-01-17T00:00:00.000Z</published>
+    </entry>
+</feed>
