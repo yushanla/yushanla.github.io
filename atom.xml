@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://smart.hyggehyy.com/</id>
     <title>Hyggehyy</title>
-    <updated>2021-03-07T09:41:35.223Z</updated>
+    <updated>2021-03-17T13:27:18.220Z</updated>
     <generator>Saber</generator>
     <author>
         <name/>
@@ -12,6 +12,103 @@
     <link rel="self" href="https://smart.hyggehyy.com/atom.xml"/>
     <subtitle>Everything is gonna be ok.</subtitle>
     <rights>All rights reserved</rights>
+    <entry>
+        <title type="html"><![CDATA[App端动态绘制分享卡片]]></title>
+        <id>https://smart.hyggehyy.com/2021/03/16/App%E7%AB%AF%E5%8A%A8%E6%80%81%E7%BB%98%E5%88%B6%E5%88%86%E4%BA%AB%E5%8D%A1%E7%89%87</id>
+        <link href="https://smart.hyggehyy.com/2021/03/16/App%E7%AB%AF%E5%8A%A8%E6%80%81%E7%BB%98%E5%88%B6%E5%88%86%E4%BA%AB%E5%8D%A1%E7%89%87"/>
+        <updated>2021-03-17T13:25:34.722Z</updated>
+        <summary type="html"><![CDATA[需求是在不同用户信息和分享内容的情况下，动态绘制下面的分享卡片，用户可以保存到手机中或通过分享API即时分享。
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="遇到问题">遇到问题</h2> <p>需求是在不同用户信息和分享内容的情况下，动态绘制下面的分享卡片，用户可以保存到手机中或通过分享API即时分享。</p> <img src="https://ls-img-store.oss-cn-qingdao.aliyuncs.com/img/post-2021-3-17.png" style="zoom:25%;"> <p>在H5端是很好实现的， 大致流程是：</p> <ol><li>使用<code>html2canvs</code>把html转化成canvas</li> <li><code>canvas.toDataURL(type, encoderOptions);</code> canvas转图片base64</li> <li><code>dataURLtoBlob()</code> base64转图片二进制 blob 对象</li> <li><code>URL.createObjectURL()</code> blob对象转对象URL</li> <li>使用<code>&lt;a&gt;</code>或者<code>uni.downloadFile()</code>下载图片即可</li></ol> <p>但在App端，视图层和逻辑层是分离的，在逻辑层拿不到视图层的<code>document</code>对象，也就无法使用<code>html2canvas</code>。</p> <p>又尝试了内置的<code>wxs</code>，由于<code>wxs</code>是运行在视图层的脚本语言，自然可以使用<code>document</code>对象，但是，在App端中无法使用<code>&lt;a&gt;</code>标签下载文件，<code>wxs</code>又不能使用<code>uni</code>各种接口，即使是通过<code>ownerInstance</code>传值给<code>uni</code>，然后调用<code>uni.downloadFile()</code>下载，也因为跨越两个脚本环境、且对象URL只针对当前环境有效的原因，也无法顺利进行。</p> <h2 id="可行方案">可行方案</h2> <p>使用canvas手动绘制出卡片内容，然后使用<code>uni.canvasToTempFilePath()</code>获取对象URL和<code>uni.saveImageToPhotosAlbum()</code>保存图片到相册即可。</p> <h2 id="实现细节">实现细节</h2> <p>代码细节</p> <div class="saber-highlight" data-lang="js"><pre class="saber-highlight-code language-js"><code class="language-js">changeCanvas: function() {		
+    let ctx = uni.createCanvasContext('myCanvas')
+    let centerStr = 119
+
+    // 深灰色背景
+    ctx.fillStyle = '#555'
+    ctx.fillRect(0, 0, 238, 456)
+
+    // 白色背景
+    // ctx.fillStyle = '#fff'
+    // ctx.fillRect(10, 28, 218, 398)
+    ctx.beginPath()
+    ctx.moveTo(20, 28)
+    // 左上角
+    ctx.arc(20, 38, 10, Math.PI, Math.PI*3/2)
+    // 上边线
+    ctx.lineTo(218, 28)
+    // 右上角
+    ctx.arc(215, 38, 10, Math.PI*3/2, 0)
+    // 右边线
+    ctx.lineTo(225, 412)
+    // 右下角
+    ctx.arc(215, 412, 10, 0, Math.PI/2)
+    // 下边线
+    ctx.lineTo(20, 422)
+    // 左下角
+    ctx.arc(20, 412, 10, Math.PI/2, Math.PI)
+    // 左边线
+    ctx.lineTo(10, 38)
+    // ctx.closePath()
+    ctx.fillStyle = '#fff'
+    ctx.fill()
+
+    // 用户名
+    ctx.textAlign = 'center'
+    // ctx.setTextAlign('center')
+    ctx.fillStyle = '#333'
+    ctx.setFontSize(18)
+    ctx.fillText('Hello', centerStr, 69)
+    // 广告语
+    ctx.fillStyle = '#999'
+    ctx.setFontSize(10)
+    ctx.fillText('在'+this.$mConfig.appName+'App发现了一篇好文章', centerStr, 90)
+
+    // 文章标题
+    ctx.fillStyle = '#333'
+    ctx.setFontSize(18)
+    let str = this.passageDetail.title
+    ctx.fillText(str.substring(0, 10), centerStr, 260)
+    if(str.length &gt; 10) ctx.fillText(str.substring(10, 18)+'...', centerStr, 282)
+
+    // 文章摘要
+    ctx.fillStyle = '#888'
+    ctx.setFontSize(12)
+    let profile = this.passageDetail.describe
+    ctx.fillText(profile.substring(0, 13), centerStr, 310)
+    if(profile.length &gt; 10) ctx.fillText(profile.substring(13, 22)+'...', centerStr, 329)
+
+    // 间隔线
+    ctx.strokeStyle = '#CED0D1'
+    ctx.moveTo(30, 350)
+    ctx.lineTo(208, 350)
+    ctx.stroke()
+
+    // 提示
+    ctx.textAlign = 'left'
+    ctx.fillText('长按识别二维码收听', 90, 380)
+    ctx.fillText(this.userinfo.user_nickname, 90, 399)
+
+    // 文章logo
+    // ctx.drawImage(this.shareImgMetarials[1].path, 80, 126, 119, 119)
+    ctx.drawImage(this.passageDetail.thumbnail, 66, 109, 119, 119)
+
+    // 二维码
+    ctx.drawImage(this.shareQrcode, 30, 360, 46, 46)
+
+    // 用户logo
+    ctx.save()
+    ctx.stroke()
+    ctx.beginPath();
+    ctx.moveTo(62, 12)
+    ctx.arc(117, 27, 15, 0, Math.PI*2, false);
+    ctx.clip();
+    ctx.drawImage(this.userinfo.avatar, 102, 12, 30, 30)
+    ctx.restore()
+
+    ctx.draw()
+}</code></pre></div><h2 id="总结">总结</h2> <p>App的混合开发确实方便快捷，但是也会在不时遇到的因为非原生开发带来的棘手问题时，感觉力不从心， 而转向原生开发又违背混合开发的初心，现在只能先暂时寄希望于行业能力慢慢迭代，打破这个循环。</p>]]></content>
+        <published>2021-03-16T00:00:00.000Z</published>
+    </entry>
     <entry>
         <title type="html"><![CDATA[跳转第三方App]]></title>
         <id>https://smart.hyggehyy.com/2021/03/07/%E8%B7%B3%E8%BD%AC%E7%AC%AC%E4%B8%89%E6%96%B9App</id>
